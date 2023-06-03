@@ -1,0 +1,39 @@
+@import "../../../../styles/colors.module.scss";
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+
+    background-image: linear-gradient(to left, $lightGray, $darkGray);
+}
+.by{
+    color: $white;
+}
+
+.footerLink {
+    text-decoration: none;
+    color: $lightGreen;
+    transition: 0.3s;
+
+    &:hover {
+        color: $darkGreen;
+    }
+}
+
+@media (max-width: 575px) {
+    .footer {
+        padding: 26px 20px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 413px) {
+    .footer {
+        justify-content: center;
+    }
+}

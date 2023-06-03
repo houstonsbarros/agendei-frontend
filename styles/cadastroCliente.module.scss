@@ -1,0 +1,218 @@
+@import "./colors.module.scss";
+
+.main {
+  background-color: #0C2141;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  width: 1026px;
+  height: 650px;
+
+  background: #FFFFFF;
+  border: 1px solid #F4F4F4;
+  box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.label{
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.input{
+    border-radius: 5px;
+    width: 20em;
+    height: 50px;
+    color: #000;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border: solid 2px #c6c6c6;
+    padding-left: 15px;
+    transition: 0.2s;
+}
+
+.input:focus{
+    border: solid 2px #0C2141;
+    outline: none;
+}
+
+.formBtn{
+    border-radius: 5px;
+    width: 470px;
+    height: 50px;
+    color: #fff;
+    background-color: #0C2141;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    padding-left: 15px;
+    transition: 0.3s;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+.formBtn:hover{
+    background-color: #123a75;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.formLink{
+    color: $white;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover{
+        color: #0C2141;
+        cursor: pointer;
+    }
+}
+
+.passwordInputContainer {
+  position: relative;
+
+  .input {
+    padding-right: 40px; 
+    width: 18em;
+  }
+
+  .passwordToggleButton {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    border: none;
+    background-color: transparent;
+    color: #999;
+    cursor: pointer;
+
+    &:hover {
+      color: #0C2141;
+    }
+
+    &.showPassword {
+      color: #007bff;
+    }
+
+    .fa-eye {
+      font-size: 20px;
+    }
+
+    .fa-eye-slash {
+      font-size: 20px;
+    }
+  }
+}
+
+.cadastrar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.cadastrarLink {
+  color: #0C2141;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    color: #123a75;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1290px) {
+  .form {
+    margin: 54px 200px;
+  }
+}
+
+@media (max-width: 900px) {
+  .form {
+    margin: 54px 100px;
+  }
+}
+@media (max-width: 715px){
+  .form {
+    margin: 54px 50px;
+  }
+}
+@media (max-width: 600px){
+  .form {
+    margin: 54px 20px;
+  }
+}
+@media (max-width: 512px){
+  .form {
+    margin: 54px 10px;
+  }
+  .input{
+    width: 23em;
+  }
+  .passwordInputContainer {
+    .input {
+      padding-right: 40px;
+      width: 20.5em;
+    }
+  }
+
+  .formBtn{
+    width: 23em;
+  }
+}
+@media (max-width: 425px){
+  .form {
+    margin: 54px 15px;
+  }
+  .input{
+    width: 20em;
+  }
+  .passwordInputContainer{
+    .input{
+      padding-right: 40px;
+      width: 17.5em;
+    }
+    .passwordToggleButton{
+      right: 10px;
+    }
+  }
+  .formBtn{
+    width: 20em;
+  }
+  .formTitle{
+    font-size: 25px;
+  }
+}

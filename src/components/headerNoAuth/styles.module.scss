@@ -1,0 +1,88 @@
+@import "../../../styles/colors.module.scss";
+
+.container{
+    background-image: linear-gradient(to left, $lightGray, $darkGray);
+    height: 76px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 55px;
+}
+.logo{
+    width: 130px;
+}
+.buttonAcessar{
+    background-color: transparent;
+    color: $white;
+    border: 1px solid $white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-right: 20px;
+    &:hover{
+        background-color: $white;
+        color: black;
+    }
+}
+.buttonSolicitar{
+    background-color: $lightGreen;
+    color: black;
+    border: transparent;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-right: 20px;
+    &:hover{
+        background-color: $darkGreen;
+    }
+}
+@media (max-width: 768px) {
+    .container{
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 55px;
+    }
+}
+@media (max-width: 575px){
+    .container{
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .logo{
+        width: 100px;
+        margin-bottom: 15px;
+    }
+    .buttonAcessar{
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 375px){
+    .container{
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .logo{
+        width: 100px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+    .buttonAcessar{
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,93 @@
+.main {
+    background-color: #0C2141;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    width: 1026px;
+    height: 650px;
+
+    background: #FFFFFF;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.titulo {
+    font-weight: 700;
+    font-size: 46px;
+    text-align: center;
+}
+
+.subtitulo {
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.containerBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.agendar, .agendamentos {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+
+    width: 200px;
+    height: 200px;
+
+    background: #FFFFFF;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+
+    transition: linear 0.25s;
+    cursor: pointer;
+}
+
+.agendar Button, .agendamentos Button {
+    background: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.icone {
+    color: #0C2141;
+    margin-bottom: 10px;
+}
+
+.agendar:hover, .agendamentos:hover {
+    background: #0C2141;
+    transform: translateY(-13px);
+    cursor: pointer;
+
+    & Button, & .icone {
+        color: #FFFFFF !important;
+    }
+}

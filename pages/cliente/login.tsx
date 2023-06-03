@@ -7,6 +7,7 @@ import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import Image from 'next/image';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 const Login = function () {
     const [showPassword, setShowPassword] = useState(false);
@@ -34,6 +35,9 @@ const Login = function () {
             });
 
             if (response.ok) {
+                const data = await response.json();
+                sessionStorage.setItem('agendei-token', data.token);
+
                 toast.success('Cliente logado!', {
                     position: "top-right",
                     autoClose: 5000,
@@ -45,7 +49,7 @@ const Login = function () {
                     theme: "colored",
                 });
 
-                window.location.href = '/cliente/home';
+                window.location.href = "/cliente/inicio";
             } else {
                 toast.error('Usuário ou senha inválidos!', {
                     position: "top-right",
@@ -112,8 +116,8 @@ const Login = function () {
                             </div>
                         </FormGroup>
                         <Button type="submit" outline className={styles.formBtn}>ENTRAR</Button>
-                        <p  className={styles.cadastrar}>É novo aqui? <a href="/cliente/cadastrar"  className={styles.cadastrarLink}>
-                            Cadastre-se</a></p>
+                        <p  className={styles.cadastrar}>É novo aqui? <Link href="/cliente/cadastrar"  className={styles.cadastrarLink}>
+                            Cadastre-se</Link></p>
                     </Form>
                 </Container>
             </main>

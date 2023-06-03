@@ -21,22 +21,35 @@ const Cadastrar = function () {
         event.preventDefault();
 
         const formData = new FormData(event.target as HTMLFormElement);
-        const email = formData.get("email");
-        const password = formData.get("password");
+        const first_name = formData.get("nome") as string;
+        const last_name = formData.get("sobrenome") as string;
+        var cpf = formData.get("cpf") as string;
+        var phone = formData.get("telefone") as string;
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+
+        cpf = cpf.replace(/\D/g, '');
+        phone = phone.replace(/\D/g, '');
 
         console.log(email, password);
 
         try {
-            const response = await fetch("http://localhost:3000/client/login", {
+            const response = await fetch("http://localhost:3000/client/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ first_name, last_name, cpf, phone, email, password })
             });
 
             if (response.ok) {
-                toast.success('Cliente logado!', {
+                const data = await response.json();
+                const client_info = [data.client.first_name, data.client.last_name, data.client.email, data.client.id];
+                sessionStorage.setItem('client_info', JSON.stringify(client_info));
+                
+                localStorage.setItem('agendei-token', data.token);
+                
+                toast.success('Cliente cadastrado!', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -49,7 +62,7 @@ const Cadastrar = function () {
 
                 window.location.href = '/cliente/home';
             } else {
-                toast.error('Usuário ou senha inválidos!', {
+                toast.error('Erro ao cadastrar!', {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,

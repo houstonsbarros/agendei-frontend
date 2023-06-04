@@ -87,7 +87,7 @@ const Cadastrar = function () {
                 <ToastContainer />
                 <Container className="py-5" onSubmit={handleSubmit}>
                     <Form className={styles.form}>
-                        <Image src="/agendeilogo.png" alt="Logo Agendei" width={200} height={140} />
+                        <Image src="/agendeilogo.png" alt="Logo Agendei" width={200} height={135} />
                         <div className={styles.formGroup}>
                             <FormGroup>
                                 <Label for="nome" className={styles.label}>

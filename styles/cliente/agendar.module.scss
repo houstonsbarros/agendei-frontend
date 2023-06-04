@@ -13,7 +13,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 
     width: 1026px;
@@ -23,4 +23,162 @@
     border: 1px solid #F4F4F4;
     box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
+
+    gap: 50px;
+}
+
+.day:not(.disabled) {
+    background-color: #ededed;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.selected:not(.disabled) {
+    background-color: #0C2141;
+    color: #ffffff;
+    border-radius: 50%;
+}
+
+.calendario {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+
+    width: 350px;
+    height: 350px;
+
+    background: #FFFFFF;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.titulo {
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+}
+
+.horarios {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    width: 330px;
+
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    background: #FFFFFF;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.horas {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.button {
+    width: 60px;
+    height: 40px;
+
+    background: #0C2141;
+    color: #fff;
+    border: none;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.051);
+    border-radius: 10px;
+    
+    transition: linear 0.25s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #123972;
+    color: #fff;
+    transform: translateY(-3px);
+
+    cursor: pointer;
+}
+
+.button:active {
+    background: #0C2141;
+    color: #fff;
+    transform: translateY(3px);
+
+    cursor: pointer;
+}
+
+.button:focus {
+    background-color: #2F9E41;
+}
+
+.horariosAgendar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.confirmacao {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+
+    width: 270px;
+    height: 50px;
+
+    background: #0C2141;
+    border: none;
+    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.dataHora {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.divBtnConfirmar {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+.btnConfirmar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30px;
+    height: 30px;
+
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    
+    transition: linear 0.25s;
+    cursor: pointer;
+}
+
+.btnConfirmar:hover {
+    background: #2F9E41;
+    transform: translateY(-3px);
+
+    cursor: pointer;
 }

@@ -38,7 +38,6 @@ const Home = () => {
         setTextoBotaoProfissional('#000');
 
         setOpcao(1);
-        console.log(opcao);
     }
 
     const mudarCorProfissional = () => {
@@ -51,7 +50,6 @@ const Home = () => {
         setTextoBotaoCliente('#000');
 
         setOpcao(2);
-        console.log(opcao);
     }
 
     const entrar = () => {
@@ -60,7 +58,6 @@ const Home = () => {
         } else if (opcao === 2) {
             console.log('Profissional');
         } else {
-            console.log('Selecione uma opção');
             notify();
         }
     }

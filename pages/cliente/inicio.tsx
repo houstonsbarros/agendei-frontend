@@ -36,7 +36,7 @@ const Inicio = () => {
                     setLogado(true);
                     setClientInfo(client_info as never[]);
                 } else {
-                    console.log('Não foi possível obter os dados do usuário!');
+                    window.location.href = "/cliente/login";
                 }
             } catch (error) {
                 window.location.href = "/cliente/login";

@@ -27,6 +27,14 @@ const Agendar = () => {
         return day === 0;
     }
 
+    const isDisabledDay = (date: Date) => {
+        const today = new Date(); // Obtém a data atual
+        const todayWithoutTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // Remove a informação de tempo da data atual
+        const providedDateWithoutTime = new Date(date.getFullYear(), date.getMonth(), date.getDate()); // Remove a informação de tempo da data fornecida
+      
+        return providedDateWithoutTime < todayWithoutTime; // Retorna true se a data fornecida for anterior à data atual
+      }
+
     const diasDaSemana = (date: Date) => {
         const day = date.getDay();
         return day !== 0;
@@ -168,9 +176,7 @@ const Agendar = () => {
 
     const currentMonth = new Date();
     currentMonth.setMonth(currentMonth.getMonth());
-
     
-
     return (
         <>
             {!selecionarServico ? (
@@ -180,16 +186,16 @@ const Agendar = () => {
                         <Form>
                             {servicos.map((servico, item) => (
                                 <FormGroup key={item} className={styles.service}>
-                                    <Label check>
+                                    <Label check className={styles.card}>
                                         <Input type="checkbox" name="servicos" value={servico.id} />
-                                        <div className="card">
-                                            <h2 className="title">{servico.name}</h2>
+                                        <div>
+                                            <h2 className={styles.titleservice}>{servico.name}</h2>
                                         </div>
                                     </Label>
                                 </FormGroup>
                             ))}
 
-                            <Button onClick={handleSelecionarServico}>Selecionar Serviço</Button>
+                            <Button onClick={handleSelecionarServico} className={styles.btnSelecionar}>Selecionar Serviço</Button>
                         </Form>
                     </div>
                 </main>
@@ -204,14 +210,14 @@ const Agendar = () => {
                                 classNames={{
                                     day: styles.day,
                                 }}
-                                disabled={isHoliday}
+                                disabled={[isHoliday, isDisabledDay]}
                                 modifiers={{available: diasDaSemana}}
                                 modifiersClassNames={
                                     {selected: styles.selected}
                                 }
                                 mode="single"
                                 fromMonth={new Date()}
-                                toMonth={currentMonth}
+                                toMonth={nextMonthDate}
                                 onDayClick={(day) => handleDateChange({ target: { value: day.toString() } })}
                                 locale={ptBR}
                                 defaultMonth={new Date()} fromYear={2023} toYear={2023}

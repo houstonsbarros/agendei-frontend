@@ -20,16 +20,8 @@
 
 .titulo {
     font-weight: 700;
-    font-size: 56px;
+    font-size: 36px;
     text-align: center;
-}
-
-.subtitulo {
-    font-weight: 400;
-    font-size: 22px;
-    margin-bottom: 20px;
-    text-align: center;
-    margin-top: 10px;
 }
 
 .containerBtns {
@@ -41,6 +33,18 @@
     gap: 50px;
 }
 
+.card {
+    width: 300px;
+    height: 180px;
+
+    background: #FFFFFF;
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+}
+
 .cima {
     display: flex;
     flex-direction: row-reverse;
@@ -50,7 +54,7 @@
 
     background: #0053CC;
     width: 100%;
-    height: 70px;
+    height: 60px;
 
     border-radius: 50px 50px 0px 0px;
 
@@ -62,38 +66,45 @@
 
 .baixo {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     width: 100%;
-    height: 70px;
+    height: 140px;
+
+    margin-top: -10px;
 
     & .subtituloBtn {
-        color: #0053CC;
+        color: #000;
+        text-align: center;
+        font-size: 14px;
         font-weight: 500;
+        margin-top: 5px;
+        margin-left: 6px;
+        margin-right: 6px;
     }
 }
 
-.agendar, .agendamentos {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-
-    width: 450px;
-    height: 140px;
-
-    background: #FFFFFF;
-    border: 1px solid #F4F4F4;
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+.btn {
+    width: 130px;
+    height: 40px;
+    background: #0053CC;
     border-radius: 50px;
-}
-
-.agendar:hover, .agendamentos:hover {
+    margin-top: 10px;
+    border: none;
+    
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+  
     cursor: pointer;
-    transform: scale(1.01);
-
-    transition: 0.5s;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+        background-color: #fff;
+        color: #0053CC;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
 }

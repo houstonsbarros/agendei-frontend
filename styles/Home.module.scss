@@ -1,68 +1,68 @@
 .background {
     background-color: #fff;
-    font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
 }
 
 .container {
-    width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 
-    width: 1026px;
-    height: 650px;
-
-    background: #FFFFFF;
-    border: 1px solid #F4F4F4;
-    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+    margin-top: 70px;
 }
 
 .titulo {
     font-weight: 800;
-    font-size: 96px;
-    line-height: 144px;
-    margin-top: -50px;
+    font-size: 100px;
     text-align: center;
 }
 
 .subtitulo {
     font-weight: 500;
-    font-size: 19px;
+    font-size: 28px;
     line-height: 36px;
-    margin-top: -20px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.btns {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.btnCliente, .btnProfissional, .btnEntrar {
-    width: 348px;
-    height: 63px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+.btn {
+    width: 15.625rem;
+    height: 3.125rem;
+    background: #0053CC;
+    border-radius: 50px;
     margin: 10px;
     border: none;
     
-    font-weight: 700;
-    font-size: 28px;
+    font-weight: 400;
+    font-size: 24px;
     line-height: 48px;
     text-align: center;
+    color: #fff;
 
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+        background-color: #fff;
+        color: #0053CC;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@media (max-width: 430px) {
+    .container {
+        margin-top: 150px;
+    }
+    .titulo {
+        font-size: 70px;
+    }
+    .subtitulo {
+        font-size: 25px;
+    }
 }

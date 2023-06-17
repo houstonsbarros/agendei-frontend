@@ -1,6 +1,6 @@
 import styles from '../../styles/loginCliente.module.scss'
 import Head from 'next/head'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
@@ -8,9 +8,13 @@ import Image from 'next/image';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
+import Footer from '@/components/common/footer';
+import Carregar from '../carregar';
 
 const Login = function () {
+
     const [showPassword, setShowPassword] = useState(false);
+    const [logado, setLogado] = useState(false);
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -18,15 +22,13 @@ const Login = function () {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
+
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get("email");
         const password = formData.get("password");
 
-        console.log(email, password);
-        
         try {
-            const response = await fetch("http://localhost:3000/client/login", {
+            const response = await fetch("https://agendei-api.onrender.com/client/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -38,18 +40,7 @@ const Login = function () {
                 const data = await response.json();
                 sessionStorage.setItem('agendei-token', data.token);
 
-                toast.success('Cliente logado!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-
-                window.location.href = "/cliente/inicio";
+                setLogado(true)
             } else {
                 toast.error('Usuário ou senha inválidos!', {
                     position: "top-right",
@@ -63,45 +54,61 @@ const Login = function () {
                 });
             }
         } catch (error) {
-            console.log(error);
+            toast.error('Erro ao logar cliente!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     };
+
+    if(logado){
+        setTimeout(() => {
+            window.location.href = '/cliente/inicio';
+        }, 2500);
+
+        return <Carregar />
+    }
 
     return (
         <>
             <Head>
-                <title>Login Cliente - Agendei</title>
+                <title>Login - Agendei</title>
+                <link rel="icon" href="/favicon.png" />
             </Head>
             <main className={styles.main}>
-                <ToastContainer/>
-                <Container className="py-5" onSubmit={handleSubmit}>
-                    <Form className={styles.form}>
-                        <Image src="/agendeilogo.png" alt="Logo Agendei" width={200} height={135} />
+                <ToastContainer />
+                <Container className={styles.container} onSubmit={handleSubmit}>
+                    <Form className={styles.form} autoComplete="off">
+                        <h1 className={styles.titulo}>Comece a agendar<br />agora mesmo</h1>
+                        <p className={styles.subtitulo}>Faça seu login para continuar</p>
                         <FormGroup>
-                            <Label for="email" className={styles.label}>
-                                Email
-                            </Label>
-                            <Input
-                                id="email"
-                                name="email"
-                                type="text"
-                                placeholder="Digite seu email"
-                                required
-                                className={styles.input} />
+                            <div className={styles.label}>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    placeholder=" "
+                                    required
+                                />
+                                <label>Email</label>
+                            </div>
                         </FormGroup>
                         <FormGroup>
-                            <Label for="password" className={styles.label}>
-                                Senha
-                            </Label>
-                            <div className={styles.passwordInputContainer}>
+                            <div className={styles.label}>
                                 <Input
                                     id="password"
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="Digite sua senha"
                                     required
-                                    className={styles.input}
+                                    autoComplete="new-password"
                                 />
+                                <label>Senha</label>
                                 <button
                                     type="button"
                                     onClick={toggleShowPassword}
@@ -115,11 +122,11 @@ const Login = function () {
                                 </button>
                             </div>
                         </FormGroup>
-                        <Button type="submit" outline className={styles.formBtn}>ENTRAR</Button>
-                        <p  className={styles.cadastrar}>É novo aqui? <Link href="/cliente/cadastrar"  className={styles.cadastrarLink}>
-                            Cadastre-se</Link></p>
+                        <Button type="submit" outline className={styles.btn}>Entrar</Button>
+                        <p className={styles.cadastrar}><Link href="/cliente/cadastrar" className={styles.cadastrarLink}>Crie agora mesmo sua conta</Link></p>
                     </Form>
                 </Container>
+                <Footer/>
             </main>
         </>
     )

@@ -1,0 +1,293 @@
+.main {
+    background-color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    min-height: 70vh;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 50px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 50px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+}
+
+.service{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 250px;
+    height: 80px;
+
+    margin: 10px;
+
+    background: #FFFFFF;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+
+    & .informacoes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        font-size: 15px;
+    }
+}
+
+.selecionado {
+    display: none;
+}
+
+.card:hover {
+    background: #0053CC;
+    color: #fff;
+    cursor: pointer;
+
+    & .titleservice {
+        color: #fff !important;
+    }
+}
+
+.titleservice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 800;
+    font-size: 24px;
+    color: #0053CC;
+    
+    margin-left: 10px;
+}
+
+.servicosDiv {
+    & Input {
+        display: none;
+    }
+    & Input[type="checkbox"]:checked + .card {
+        background-color: #0053CC;
+        color: #fff;
+
+        & .titleservice {
+            color: #fff !important;
+        }
+
+        & .selecionado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        
+            position: absolute;
+        
+            width: 120px;
+            height: 20px;
+
+            margin-top: 15px;
+        
+            background: #0053CC;
+            border: 1px solid #F4F4F4;
+            box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+            border-radius: 50px;
+        
+            & .selecionadoText {
+                font-weight: 400;
+                font-size: 14px;
+                color: #FFFFFF;
+            }
+        }
+    }
+}
+
+.btnGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    gap: 20px;
+}
+
+.btnSelecionar {
+    width: 15rem;
+    height: 3.125rem;
+    background: #0053CC;
+    border-radius: 50px;
+    margin-top: 30px;
+    border: none;
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: center;
+    color: #fff;
+  
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+        background-color: #fff;
+        color: #0053CC;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.btnVoltar {
+    width: 15rem;
+    height: 3.125rem;
+    background: #fff;
+    border-radius: 50px;
+    margin-top: 30px;
+    border: none;
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: center;
+    color: #0053CC;
+
+    
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+  
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+        background-color: #0053CC;
+        color: #fff;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.concluir {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & .valorTotal {
+        font-weight: 800px;
+        margin-bottom: -10px;
+    }
+}
+
+@media (max-width: 545px) {
+    .title {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .titleservice {
+        font-size: 18px;
+    }
+    
+    .card {
+        width: 180px;
+        height: 60px;
+    
+        margin: 10px 3px;
+    
+        & .informacoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+    
+            font-size: 12px;
+        }
+    }
+
+    .servicosDiv {
+        & Input[type="checkbox"]:checked + .card {
+            & .titleservice {
+                color: #fff !important;
+                font-size: 18px !important;
+            }
+    
+            & .selecionado {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+            
+                position: absolute;
+            
+                gap: 5px;
+            
+                width: 120px;
+                height: 20px;
+            
+                margin-bottom: 85px;
+            
+                background: #0053CC;
+                border: 1px solid #F4F4F4;
+                box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+                border-radius: 50px;
+            
+                & .selecionadoText {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+
+    .btnGroup {
+        flex-direction: column-reverse;
+        margin: 0;
+        gap: 10px;
+    }
+
+    .btnSelecionar {
+        margin-top: 20px;
+    }
+
+    .btnVoltar {
+        margin-top: 0px;
+    }
+}

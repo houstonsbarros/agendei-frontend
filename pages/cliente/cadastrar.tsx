@@ -9,8 +9,13 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InputMask from 'react-input-mask';
 import Link from 'next/link';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const Cadastrar = function () {
+    const apiUrl = process.env.API_URL;
+
     const [showPassword, setShowPassword] = useState(false);
 
     const toggleShowPassword = () => {
@@ -34,7 +39,7 @@ const Cadastrar = function () {
         console.log(email, password);
 
         try {
-            const response = await fetch("http://localhost:3000/client/register", {
+            const response = await fetch(`"${apiUrl}/client/register"`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

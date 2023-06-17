@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 50px;
+}
+
+.titulo {
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 60px;
+    text-align: center;
+}

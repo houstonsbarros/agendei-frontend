@@ -22,6 +22,10 @@ const Agendar = () => {
     const [selecionarServico, setSelecionarServico] = useState(false);
     const [date, setDate] = useState(new Date());
 
+    const [selecionado, setSelecionado] = useState(false)
+    const [servico, setServico] = useState('#FFF');
+    const [TextoStyleServico, setTextoStyleServico] = useState('#000');
+
     const isHoliday = (date: Date) => {
         const day = date.getDay();
         return day === 0;
@@ -61,9 +65,11 @@ const Agendar = () => {
     };
 
     useEffect(() => {
+        const id = sessionStorage.getItem('id-professional');
+
         const fetchServicos = async () => {
             try {
-                const response = await fetch('http://localhost:3000/professional/getServices?id=4');
+                const response = await fetch(`http://localhost:3000/professional/getServices?id=${id}`);
                 if (response.ok) {
                     const data = await response.json();
 
@@ -176,6 +182,8 @@ const Agendar = () => {
 
     const currentMonth = new Date();
     currentMonth.setMonth(currentMonth.getMonth());
+
+    console.log(servicos)
     
     return (
         <>
@@ -183,17 +191,26 @@ const Agendar = () => {
                 <main className={styles.main}>
                     <ToastContainer />
                     <div className={styles.container}>
-                        <Form>
-                            {servicos.map((servico, item) => (
-                                <FormGroup key={item} className={styles.service}>
-                                    <Label check className={styles.card}>
-                                        <Input type="checkbox" name="servicos" value={servico.id} />
-                                        <div>
+                        <h1 className={styles.title}>Agora, selecione os serviços desejados</h1>
+                        <Form className={styles.form}>
+                            <FormGroup className={styles.service}>
+                                {servicos.map((servico, item) => (
+                                    <div className={styles.servicosDiv} key={item}>
+                                        <Input type="checkbox" id={servico.name} name="servicos" value={servico.id}/>
+                                        <Label check className={styles.card} htmlFor={servico.name}>
+                                            <div className={styles.selecionado}>
+                                                <Image src='/check.svg' alt='check' width={15} height={15} />
+                                                <p className={styles.selecionadoText}>Selecionado</p>
+                                            </div>
                                             <h2 className={styles.titleservice}>{servico.name}</h2>
-                                        </div>
-                                    </Label>
-                                </FormGroup>
-                            ))}
+                                            <div className={styles.informacoes}>
+                                                <p>{servico.description}</p>
+                                                <p><b>Preço: </b>R${servico.price}</p>
+                                            </div>
+                                        </Label>
+                                    </div>
+                                ))}
+                            </FormGroup>
 
                             <Button onClick={handleSelecionarServico} className={styles.btnSelecionar}>Selecionar Serviço</Button>
                         </Form>

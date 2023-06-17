@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Button } from "reactstrap";
 import styles from "../../styles/cliente/inicio.module.scss";
 import { BiBookmark, BiCalendar } from "react-icons/bi";
+import { FaChevronRight } from "react-icons/fa";
+import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
 
 const Inicio = () => {
     const [logado, setLogado] = useState(false);
@@ -15,7 +18,7 @@ const Inicio = () => {
             const token = sessionStorage.getItem("agendei-token");
 
             try {
-                const response = await fetch("http://localhost:3000/client/current", {
+                const response = await fetch("https://agendei-api.onrender.com/client/current", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -54,22 +57,35 @@ const Inicio = () => {
         <>
             <Head>
                 <title>Inicio Cliente - Agendei</title>
+                <link rel="icon" href="/favicon.png" />
             </Head>
             <main className={styles.main}>
+                <Header />
                 <div className={styles.container}>
                     <h1 className={styles.titulo}>Bem vindo, {client_info[0]} {client_info[1]}</h1>
                     <p className={styles.subtitulo}>O que você deseja fazer hoje?</p>
                     <div className={styles.containerBtns}>
-                        <Link href="/cliente/agendar" className={styles.agendar}>
-                            <BiCalendar size="40px" className={styles.icone}/>
-                            <Button>Agendar</Button>
+                        <Link href="/cliente/agendar/profissionais" className={styles.agendar}>
+                            <div className={styles.cima}>
+                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <h1 className={styles.tituloBtn}>Agendar Horário</h1>
+                            </div>
+                            <div className={styles.baixo}>
+                                <p className={styles.subtituloBtn}>Realize já seu agendamento e não perca tempo</p>
+                            </div>
                         </Link>
                         <Link href="/cliente/agendamentos" className={styles.agendamentos}>
-                            <BiBookmark size="40px" className={styles.icone}/>
-                            <Button>Ver Meus<br/>Agendamentos</Button>
+                            <div className={styles.cima}>
+                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <h1 className={styles.tituloBtn}>Seus Agendamentos</h1>
+                            </div>
+                            <div className={styles.baixo}>
+                                <p className={styles.subtituloBtn}>Verifique agora mesmo seus agendamentos</p>
+                            </div>
                         </Link>
                     </div>
                 </div>
+                <Footer/>
             </main>
         </>
     )

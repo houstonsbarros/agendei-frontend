@@ -13,7 +13,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 
     width: 1026px;
@@ -26,6 +26,16 @@
 
     gap: 50px;
 }
+
+.form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 50px;
+}
+
 
 .day:not(.disabled) {
     background-color: #ededed;
@@ -106,8 +116,9 @@
 .service{
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 
@@ -115,23 +126,93 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
+
+    width: 250px;
+    height: 80px;
+
+    margin: 10px;
 
     background: #FFFFFF;
     border: 1px solid #F4F4F4;
-    box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
 
-    width: 250px;
-    height: 50px;
+    & .informacoes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
 
-    margin-bottom: 20px;
+        font-size: 15px;
+    }
+}
+
+.selecionado {
+    display: none;
 }
 
 .card:hover {
-    background: #2F9E41;
+    background: #0053CC;
     color: #fff;
     cursor: pointer;
+
+    & .titleservice {
+        color: #fff !important;
+    }
+}
+
+.titleservice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 800;
+    font-size: 24px;
+    color: #0053CC;
+    
+    margin-left: 10px;
+}
+
+.servicosDiv {
+    & Input {
+        display: none;
+    }
+    & Input[type="checkbox"]:checked + .card {
+        background-color: #0053CC;
+        color: #fff;
+
+        & .titleservice {
+            color: #fff !important;
+        }
+
+        & .selecionado {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        
+            position: absolute;
+        
+            gap: 5px;
+        
+            width: 120px;
+            height: 20px;
+        
+            margin-bottom: 85px;
+        
+            background: #0053CC;
+            border: 1px solid #F4F4F4;
+            box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+            border-radius: 50px;
+        
+            & .selecionadoText {
+                font-weight: 400;
+                font-size: 14px;
+                color: #FFFFFF;
+            }
+        }
+    }
 }
 
 .btnSelecionar{
@@ -154,36 +235,13 @@
     cursor: pointer;
 }
 
-.titleservice {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-weight: 600;
-    font-size: 20px;
-    color: #000;
-    
-    margin-left: 10px;
-}
 
 .button:hover {
-    background: #123972;
+    background: #0053CC;
     color: #fff;
     transform: translateY(-3px);
 
     cursor: pointer;
-}
-
-.button:active {
-    background: #0C2141;
-    color: #fff;
-    transform: translateY(3px);
-
-    cursor: pointer;
-}
-
-.button:focus {
-    background-color: #2F9E41;
 }
 
 .horariosAgendar {

@@ -5,13 +5,37 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'reactstrap';
 import styles from '../../../styles/cliente/agendar/profissionais.module.scss';
 
+interface UserData {
+    adress: string;
+    schedule: {
+        hourStart: number;
+        break: number;
+        timeBreak: number;
+        hourEnd: number;
+    };
+}
+
+interface Profissional {
+    id: number;
+    first_name: string;
+    last_name: string;
+    schedule: {
+        hourStart: number;
+        break: number;
+        timeBreak: number;
+        hourEnd: number;
+    };
+    adress: string;
+  }
+
+
 const Profissionais = () => {
-    const [profissionais, setProfissionais] = useState([] as never[]);
-    const [endereco, setEndereco] = useState([] as never[]);
-    const [horario, setHorario] = useState([] as never[])
+    const [profissionais, setProfissionais] = useState<Profissional[]>([]);
+    const [endereco, setEndereco] = useState<string[]>([]);
+    const [horario, setHorario] = useState<string[]>([]);
     
-    const selecionarProfissional = (id) => {
-        sessionStorage.setItem("id-professional", id);
+    const selecionarProfissional = (id: number | string) => {
+        sessionStorage.setItem("id-professional", id.toString());
         window.location.href = "/cliente/agendar/servico";
     };
 
@@ -33,16 +57,16 @@ const Profissionais = () => {
 
                     console.log(userData);
 
-                    const endereco = userData.map((endereco) => {
-                        const enderecoJSON = JSON.parse(endereco.adress);
-
+                    const endereco = userData.map((item: UserData) => {
+                        const enderecoJSON = JSON.parse(item.adress);
+                      
                         console.log(enderecoJSON);
                         const enderecoFormatado = `${enderecoJSON.street}, ${enderecoJSON.number} - ${enderecoJSON.complement}, ${enderecoJSON.city} - ${enderecoJSON.state}`;
-
+                      
                         return enderecoFormatado;
-                    })
+                    });
 
-                    const horario = userData.map((horario) => {
+                    const horario = userData.map((horario: UserData) => {
                         const horarioFormatado = `das 0${horario.schedule.hourStart}h às ${horario.schedule.break}h e de ${horario.schedule.break + horario.schedule.timeBreak}h às ${horario.schedule.hourEnd}h`
                         
                         return horarioFormatado;

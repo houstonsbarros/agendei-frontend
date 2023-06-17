@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
+
 const Agendamentos = () => {
     const [agendamentos, setAgendamentos] = useState([] as never[]);
     const date = new Date();
@@ -61,9 +62,7 @@ const Agendamentos = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {agendamentos
-                        .sort((a, b) => new Date(a.schedule.date) - new Date(b.schedule.date))
-                        .map((agendamento: any) => (
+                    {agendamentos.map((agendamento: any) => (
                         <tr key={agendamento.id}>
                             <td>{agendamento.professional_name}</td>
                             <td>{agendamento.service_names}</td>

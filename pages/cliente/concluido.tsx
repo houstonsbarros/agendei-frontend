@@ -20,7 +20,7 @@ interface Servico {
 }
 
 const Concluido = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState({ schedule: { date: "", hour: "" }, services: [] });
     const [servicos, setServicos] = useState<Servico[]>([]);
     const [logado, setLogado] = useState(false);
     const [client_info, setClientInfo] = useState([]);
@@ -95,9 +95,9 @@ const Concluido = () => {
             const data = dataString;
 
             if (Array.isArray(data)) {
-                setData(data as never[]);
+                setData(data as never);
             } else {
-                setData([]);
+                setData( {} as never);
             }
         } else {
             console.log('Erro ao buscar os serviços');
@@ -188,7 +188,6 @@ const Concluido = () => {
                             );
                         })}
                     </ul>
-                    <h2 className={styles.subtitulo}>Forma de Pagamento: {data[3]}</h2>
                     {professionalAdress !== '' && (
                         <h2 className={styles.subtitulo}>Endereço:  
                         {professionalAdressParsed.street && ` ${professionalAdressParsed.street},`}

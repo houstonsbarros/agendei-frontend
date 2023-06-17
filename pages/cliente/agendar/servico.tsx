@@ -52,6 +52,20 @@ const Servico = () => {
     const handleSelecionarServico = () => {
         const servicosSelecionados = document.querySelectorAll('input[name="servicos"]:checked');
 
+        const arrayElementos = Array.from(servicosSelecionados).map((element: Element) => {
+            const name = element.getAttribute('data-name');
+            const description = element.getAttribute('data-description');
+            const price = parseFloat(element.getAttribute('data-price') || '0');
+            const duration = parseInt(element.getAttribute('data-duration') || '0', 10);
+          
+            return {
+              name,
+              description,
+              price,
+              duration,
+            };
+          }) as Servico[];
+
         if (servicosSelecionados.length > 0) {
             toast.success('Serviços selecionados!', {
                 position: "top-right",
@@ -82,7 +96,7 @@ const Servico = () => {
             });
         }
         
-        const total = servicosSelecionados.reduce((acc, curr) => acc + curr.price, 0);
+        const total = arrayElementos.reduce((acc, curr) => acc + curr.price, 0);
         setValorTotal(total);
     };
 
@@ -98,7 +112,7 @@ const Servico = () => {
     const mudarValor = () => {
         const servicosSelecionados = document.querySelectorAll('input[name="servicos"]:checked');
       
-        const servicosIds = Array.from(servicosSelecionados).map((servico) => servico.value);
+        const servicosIds = Array.from(servicosSelecionados).map((servico) => (servico as HTMLInputElement).value);
       
         const total = servicos.map((servico) => {
             if (servicosIds.includes(String(servico.id))) {

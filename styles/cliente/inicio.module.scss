@@ -97,3 +97,63 @@
 
     transition: 0.5s;
 }
+
+@media (max-width: 970px) {
+    .containerBtns {
+        gap: 20px;
+    }
+
+    .agendar, .agendamentos {
+        width: 350px;
+    }
+
+    .titulo {
+        font-size: 40px;
+    }
+
+    .subtitulo {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 750px) {
+    .container {
+        margin-top: 60px;
+    }
+
+    .containerBtns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .agendar, .agendamentos {
+        width: 360px;
+    }
+
+    .titulo {
+        font-size: 40px;
+    }
+
+    .subtitulo {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 380px) {
+    .containerBtns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .agendar, .agendamentos {
+        width: 320px;
+    }
+
+    .tituloBtn {
+        font-size: 24px;
+    }
+
+    .subtituloBtn {
+        text-align: center;
+    }
+}

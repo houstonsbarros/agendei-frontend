@@ -29,7 +29,7 @@ const Servico = () => {
 
         const fetchServicos = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/professional/getServices?id=${id}`);
+                const response = await fetch(`https://agendei-api.onrender.com/professional/getServices?id=${id}`);
                 if (response.ok) {
                     const data = await response.json();
 

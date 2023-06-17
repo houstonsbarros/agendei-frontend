@@ -44,7 +44,7 @@ const Profissionais = () => {
             const token = sessionStorage.getItem("agendei-token");
 
             try {
-                const response = await fetch("http://localhost:3000/professional/getProfessionals", {
+                const response = await fetch("https://agendei-api.onrender.com/professional/getProfessionals", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -77,7 +77,7 @@ const Profissionais = () => {
                     setHorario(horario)
                 }
             } catch (error) {
-                window.location.href = "/cliente/login";
+                console.log("Ih, deu erro: ", error)
             }
         };
 

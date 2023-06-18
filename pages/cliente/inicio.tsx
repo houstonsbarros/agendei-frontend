@@ -39,10 +39,10 @@ const Inicio = () => {
                     setLogado(true);
                     setClientInfo(client_info as never[]);
                 } else {
-                    window.location.href = "/cliente/login";
+                    //window.location.href = "/cliente/login";
                 }
             } catch (error) {
-                window.location.href = "/cliente/login";
+                //window.location.href = "/cliente/login";
             }
         };
 

@@ -13,7 +13,7 @@ const Carregar = () => {
             const token = sessionStorage.getItem("agendei-token");
 
             try {
-                const response = await fetch("http://localhost:3000/client/current", {
+                const response = await fetch("https://agendei-api.onrender.com/client/current", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`,

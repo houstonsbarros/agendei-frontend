@@ -58,6 +58,9 @@ const Login = function () {
                     progress: undefined,
                     theme: "colored",
                 });
+                
+
+                setIsLoading(false);
             }
         } catch (error) {
             toast.error('Erro ao logar cliente!', {
@@ -70,6 +73,8 @@ const Login = function () {
                 progress: undefined,
                 theme: "colored",
             });
+            
+            setIsLoading(false);
         }
     };
 

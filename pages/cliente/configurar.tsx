@@ -1,7 +1,3 @@
-const nodemailer = require('nodemailer');
-
-// Importe o NodeMailer
-
 const Configurar = () => {
     return (
         <div>

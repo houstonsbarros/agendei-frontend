@@ -9,9 +9,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import Footer from '@/components/common/footer';
-import Carregar from '../carregar';
 import Loading from 'react-loading';
 import { PongSpinner, SwapSpinner } from 'react-spinners-kit';
+import Carregar from '@/components/carregar';
 
 const Login = function () {
 

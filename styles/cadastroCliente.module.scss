@@ -1,12 +1,12 @@
 @import "./colors.module.scss";
 
 .main {
-  background-color: #0C2141;
-  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
   overflow-x: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
 }
 
@@ -16,13 +16,38 @@
   flex-direction: column;
   align-items: center;
 
-  width: 1026px;
+  width: 900px;
   height: 650px;
 
+  margin-top: 20px;
+  margin-bottom: 20px;
   background: #FFFFFF;
   border: 1px solid #F4F4F4;
-  box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+  border-radius: 50px;
+}
+
+.formGroup {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.titulo {
+  font-weight: 800;
+  font-size: 50px;
+  text-align: center;
+}
+
+.subtitulo {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 36px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .label{
@@ -33,55 +58,6 @@
     margin-top: 20px;
     margin-bottom: 10px;
     text-align: center;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.input{
-    border-radius: 5px;
-    width: 20em;
-    height: 50px;
-    color: #000;
-    background-color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    border: solid 2px #c6c6c6;
-    padding-left: 15px;
-    transition: 0.2s;
-}
-
-.input:focus{
-    border: solid 2px #0C2141;
-    outline: none;
-}
-
-.formBtn{
-    border-radius: 5px;
-    width: 470px;
-    height: 50px;
-    color: #fff;
-    background-color: #0C2141;
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    border: none;
-    padding-left: 15px;
-    transition: 0.3s;
-    margin-top: 35px;
-    margin-bottom: 10px;
-}
-.formBtn:hover{
-    background-color: #123a75;
-    outline: none;
-    color: #fff;
-    cursor: pointer;
 }
 
 .formLink{
@@ -97,17 +73,32 @@
     }
 }
 
-.passwordInputContainer {
-  position: relative;
+.cadastrar {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 200;
+  color: #0053CC;
+  transition: 0.3s;
+  margin-top: 20px;
+}
 
-  .input {
-    padding-right: 40px; 
-    width: 18em;
+.cadastrarLink {
+  text-decoration: none;
+  color: #0053CC;
+  transition: 0.3s;
+
+  &:hover {
+      color: #6A6A6A;
   }
+}
+
+.label{
+  position: relative;
+  padding-top: 13px;
+  font-weight: 500;
 
   .passwordToggleButton {
     position: absolute;
-    top: 50%;
+    top: 60%;
     right: 20px;
     transform: translateY(-50%);
     border: none;
@@ -133,86 +124,143 @@
   }
 }
 
-.cadastrar {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #000;
+.label Input{
+  border: 1px solid #9C9C9C;
+  border-radius: 50px;
+  outline: none;
+  min-width: 300px;
+  padding: 15px 20px;
   font-size: 16px;
-  font-weight: 500;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
 }
 
-.cadastrarLink {
-  color: #0C2141;
-  font-size: 16px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: 0.3s;
+.label input:focus{
+  border: 2px solid #3951b2;
+}
+
+.label input::placeholder{
+  color:transparent;
+}
+
+.label label{
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 15px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  background-color: white;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.label input:focus + label,
+.label input:not(:placeholder-shown) + label{
+  font-size: 13px;
+  top: 0;
+  color: #3951b2;
+}
+
+.btn {
+  width: 15.625rem;
+  height: 3.125rem;
+  background: #0053CC;
+  border-radius: 50px;
+  margin-top: 30px;
+  border: none;
+  
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+  color: #fff;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    color: #123a75;
-    cursor: pointer;
+      background-color: #fff;
+      color: #0053CC;
+      box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
   }
 }
 
-@media (max-width: 1290px) {
-  .form {
-    margin: 54px 200px;
+.btnLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15.625rem;
+  height: 3.125rem;
+  background: #0053CC;
+  border-radius: 50px;
+  margin-top: 30px;
+  border: none;
+  
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+  color: #fff;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+      background-color: #fff;
+      color: #0053CC;
+      box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 945px) {
   .form {
-    margin: 54px 100px;
+    width: 700px;
   }
 }
-@media (max-width: 715px){
+
+@media (max-width: 750px) {
   .form {
-    margin: 54px 50px;
+    width: 500px;
+    height: 600px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
-@media (max-width: 600px){
+
+@media (max-width: 520px) {
   .form {
-    margin: 54px 20px;
+    width: 450px;
+    height: 600px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
-}
-@media (max-width: 512px){
-  .form {
-    margin: 54px 10px;
-  }
-  .input{
-    width: 23em;
-  }
-  .passwordInputContainer {
-    .input {
-      padding-right: 40px;
-      width: 20.5em;
-    }
+  
+  .titulo {
+    font-size: 40px;
+    line-height: 100%;
   }
 
-  .formBtn{
-    width: 23em;
+  .label Input {
+    min-width: 300px;
   }
 }
-@media (max-width: 425px){
+
+@media (max-width: 400px) {
   .form {
-    margin: 54px 15px;
+    width: 350px;
+    height: 550px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
-  .input{
-    width: 20em;
+  .titulo {
+    font-size: 36px;
+    line-height: 100%;
   }
-  .passwordInputContainer{
-    .input{
-      padding-right: 40px;
-      width: 17.5em;
-    }
-    .passwordToggleButton{
-      right: 10px;
-    }
-  }
-  .formBtn{
-    width: 20em;
-  }
-  .formTitle{
-    font-size: 25px;
+
+  .label Input {
+    min-width: 270px;
   }
 }

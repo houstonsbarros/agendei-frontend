@@ -10,6 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import InputMask from 'react-input-mask';
 import Link from 'next/link';
 import dotenv from 'dotenv';
+import Carregar from '@/components/carregar';
+import { PongSpinner } from 'react-spinners-kit';
+import Header from '@/components/common/header';
+import Footer from '@/components/common/footer';
 
 dotenv.config();
 
@@ -17,6 +21,8 @@ const Cadastrar = function () {
     const apiUrl = process.env.API_URL;
 
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [logado, setLogado] = useState(false);
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -51,9 +57,9 @@ const Cadastrar = function () {
                 const data = await response.json();
                 const client_info = [data.client.first_name, data.client.last_name, data.client.email, data.client.id];
                 sessionStorage.setItem('client_info', JSON.stringify(client_info));
-                
+
                 localStorage.setItem('agendei-token', data.token);
-                
+
                 toast.success('Cliente cadastrado!', {
                     position: "top-right",
                     autoClose: 5000,
@@ -65,7 +71,9 @@ const Cadastrar = function () {
                     theme: "colored",
                 });
 
-                window.location.href = '/cliente/home';
+                
+                setIsLoading(true);
+                setLogado(true);
             } else {
                 toast.error('Erro ao cadastrar!', {
                     position: "top-right",
@@ -83,96 +91,101 @@ const Cadastrar = function () {
         }
     };
 
+    if(logado){
+        setTimeout(() => {
+            window.location.href = "/cliente/inicio";
+        }, 2500);
+        
+        return <Carregar/>
+    }
+
     return (
         <>
             <Head>
-                <title>Cadastrar Cliente - Agendei</title>
+                <title>Cadastrar - Agendei</title>
             </Head>
             <main className={styles.main}>
                 <ToastContainer />
                 <Container className="py-5" onSubmit={handleSubmit}>
-                    <Form className={styles.form}>
-                        <Image src="/agendeilogo.png" alt="Logo Agendei" width={200} height={135} />
+                    <Form className={styles.form} autoComplete="off">
+                        <h1 className={styles.titulo}>Faça seu cadastro e agende<br />
+                            serviços com facilidade</h1>
+                        <p className={styles.subtitulo}>Faça seu login para continuar</p>
                         <div className={styles.formGroup}>
                             <FormGroup>
-                                <Label for="nome" className={styles.label}>
-                                    Nome
-                                </Label>
-                                <Input
-                                    id="nome"
-                                    name="nome"
-                                    type="text"
-                                    placeholder="Digite seu nome"
-                                    required
-                                    className={styles.input} />
+                                <div className={styles.label}>
+                                    <Input
+                                        id="nome"
+                                        type="text"
+                                        name="nome"
+                                        placeholder=" "
+                                        required
+                                    />
+                                    <label>Nome</label>
+                                </div>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="sobrenome" className={styles.label}>
-                                    Sobrenome
-                                </Label>
-                                <Input
-                                    id="sobrenome"
-                                    name="sobrenome"
-                                    type="text"
-                                    placeholder="Digite seu sobrenome"
-                                    required
-                                    className={styles.input} />
+                                <div className={styles.label}>
+                                    <Input
+                                        id="sobrenome"
+                                        type="text"
+                                        name="sobrenome"
+                                        placeholder=" "
+                                        required
+                                    />
+                                    <label>Sobrenome</label>
+                                </div>
                             </FormGroup>
                         </div>
                         <div className={styles.formGroup}>
                             <FormGroup>
-                                <Label for="cpf" className={styles.label}>
-                                    CPF
-                                </Label>
-                                <InputMask
-                                    id="cpf"
-                                    name="cpf"
-                                    mask="999.999.999-99"
-                                    placeholder="Digite o seu CPF"
-                                    required
-                                    className={styles.input}
-                                />
+                                <div className={styles.label}>
+                                    <InputMask
+                                        id="cpf"
+                                        name="cpf"
+                                        mask="999.999.999-99"
+                                        placeholder=" "
+                                        required
+                                    />
+                                    <label>CPF</label>
+                                </div>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="telefone" className={styles.label}>
-                                    Telefone
-                                </Label>
-                                <InputMask
-                                    id="telefone"
-                                    name="telefone"
-                                    mask="(99) 99999-9999"
-                                    placeholder="Digite o seu telefone"
-                                    required
-                                    className={styles.input}
-                                />
+                                <div className={styles.label}>
+                                    <InputMask
+                                        id="telefone"
+                                        name="telefone"
+                                        mask="(99) 99999-9999"
+                                        placeholder=" "
+                                        required
+                                    />
+                                    <label>Telefone</label>
+                                </div>
                             </FormGroup>
                         </div>
                         <div className={styles.formGroup}>
                             <FormGroup>
-                                <Label for="email" className={styles.label}>
-                                    Email
-                                </Label>
-                                <Input
-                                    id="email"
-                                    name="email"
-                                    type="text"
-                                    placeholder="Digite seu email"
-                                    required
-                                    className={styles.input} />
+                                <div className={styles.label}>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        placeholder=" "
+                                        required
+                                    />
+                                    <label>Email</label>
+                                </div>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="password" className={styles.label}>
-                                    Senha
-                                </Label>
-                                <div className={styles.passwordInputContainer}>
+                                <div className={styles.label}>
                                     <Input
                                         id="password"
                                         name="password"
                                         type={showPassword ? "text" : "password"}
-                                        placeholder="Digite sua senha"
                                         required
-                                        className={styles.input}
+                                        autoComplete="new-password"
                                     />
+                                    <label>Senha</label>
                                     <button
                                         type="button"
                                         onClick={toggleShowPassword}
@@ -187,11 +200,20 @@ const Cadastrar = function () {
                                 </div>
                             </FormGroup>
                         </div>
-                        <Button type="submit" outline className={styles.formBtn}>CADASTRAR</Button>
-                        <p className={styles.cadastrar}>Já possui uma conta? <Link href="/cliente/login" className={styles.cadastrarLink}>
-                            Logar-se</Link></p>
+                            {isLoading ? (
+                                <Button type="submit" outline className={styles.btnLoading}>
+                                    <PongSpinner color="#FFF" className={styles.spinner} />
+                                </Button>
+                            ) : (
+                                <Button type="submit" outline className={styles.btn}>
+                                    Cadastrar
+                                </Button>
+                            )}
+                            <p className={styles.cadastrar}>Já possui uma conta? <Link href="/cliente/login" className={styles.cadastrarLink}>
+                                Logar-se</Link></p>
                     </Form>
                 </Container>
+                <Footer />
             </main>
         </>
     )

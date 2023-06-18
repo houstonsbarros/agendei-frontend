@@ -39,7 +39,7 @@ const Header = function () {
                 </a></p>
                 {showMenu && (
                 <ul className={styles.menu}>
-                    <li><a href='/cliente/configurar'>Configurar Conta</a></li>
+                    <li><Link href='/cliente/configurar'>Configurar Conta</Link></li>
                     <hr/>
                     <li><a onClick={removeToken}>Sair</a></li>
                 </ul>

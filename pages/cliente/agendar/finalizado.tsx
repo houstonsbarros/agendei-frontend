@@ -181,6 +181,7 @@ const Concluido = () => {
                     )}
                     
                     <Button onClick={voltar} outline className={styles.btnVoltar}>Voltar</Button>
+                    <Button href="/cliente/agendamentos" outline className={styles.btnVoltar}>Ver Meus Agendamentos</Button>
                 </div>
                 <Footer />
             </main>

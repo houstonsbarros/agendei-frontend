@@ -36,6 +36,7 @@ const Profissionais = () => {
     
     const selecionarProfissional = (id: number | string) => {
         sessionStorage.setItem("id-professional", id.toString());
+        sessionStorage.setItem("agendei-professional-endereco", endereco[id as number]);
         window.location.href = "/cliente/agendar/servico";
     };
 

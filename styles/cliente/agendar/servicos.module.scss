@@ -126,7 +126,7 @@
             width: 120px;
             height: 20px;
 
-            margin-top: 15px;
+            margin-bottom: 90px;
         
             background: #0053CC;
             border: 1px solid #F4F4F4;
@@ -215,6 +215,72 @@
     }
 }
 
+.divServicosModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.servicosModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 160px;
+    height: 70px;
+
+    background: #ffffff;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+
+.titleServiceModal {
+    font-weight: 800;
+    font-size: 18px;
+    color: #0053CC;
+}
+
+.divBtnModal {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.btnModal {
+    width: 90px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 48px;
+    text-align: center;
+    background-color: #0053CC;
+    color: #fff;
+
+    
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+  
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+        background-color: #fff;
+        color: #0053CC;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
+
 @media (max-width: 545px) {
     .title {
         font-size: 26px;
@@ -227,7 +293,7 @@
     
     .card {
         width: 180px;
-        height: 60px;
+        height: 70px;
     
         margin: 10px 3px;
     
@@ -261,7 +327,7 @@
                 width: 120px;
                 height: 20px;
             
-                margin-bottom: 85px;
+                margin-bottom: 75px;
             
                 background: #0053CC;
                 border: 1px solid #F4F4F4;

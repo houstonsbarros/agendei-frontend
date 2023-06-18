@@ -9,7 +9,7 @@ const Agendamentos = () => {
 
     const getAgendamentos = async () => {
         try {
-            const response = await fetch("http://localhost:3000/client/agendamentos", {
+            const response = await fetch("https://agendei-api.onrender.com/client/agendamentos", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

@@ -10,11 +10,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import Footer from '@/components/common/footer';
 import Carregar from '../carregar';
+import Loading from 'react-loading';
+import { PongSpinner, SwapSpinner } from 'react-spinners-kit';
 
 const Login = function () {
 
     const [showPassword, setShowPassword] = useState(false);
     const [logado, setLogado] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -22,6 +25,9 @@ const Login = function () {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        setIsLoading(true);
+    
 
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get("email");
@@ -69,10 +75,10 @@ const Login = function () {
 
     if(logado){
         setTimeout(() => {
-            window.location.href = '/cliente/inicio';
+            window.location.href = "/cliente/inicio";
         }, 2500);
-
-        return <Carregar />
+        
+        return <Carregar/>
     }
 
     return (
@@ -122,7 +128,15 @@ const Login = function () {
                                 </button>
                             </div>
                         </FormGroup>
-                        <Button type="submit" outline className={styles.btn}>Entrar</Button>
+                        {isLoading ? (
+                            <Button type="submit" outline className={styles.btnLoading}>
+                                <PongSpinner color="#FFF" className={styles.spinner}/>
+                            </Button>
+                        ) : (
+                            <Button type="submit" outline className={styles.btn}>
+                            Entrar
+                            </Button>
+                        )}
                         <p className={styles.cadastrar}><Link href="/cliente/cadastrar" className={styles.cadastrarLink}>Crie agora mesmo sua conta</Link></p>
                     </Form>
                 </Container>

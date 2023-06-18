@@ -7,6 +7,7 @@ import 'react-day-picker/dist/style.css';
 import Image from 'next/image';
 import Header from '@/components/common/header';
 import Footer from '@/components/common/footer';
+import Modal from 'react-modal';
 
 interface Servico {
     id: number;
@@ -19,10 +20,11 @@ interface Servico {
 }
 
 const Servico = () => {
-
     const [servicos, setServicos] = useState<Servico[]>([]);
     const [valorTotal, setValorTotal] = useState(0);
     const [servicosSelecionados, setServicosSelecionados] = useState<Servico[]>([]);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalServico, setModalServico] = useState<Servico>();
 
     useEffect(() => {
         const id = sessionStorage.getItem('id-professional');
@@ -80,9 +82,11 @@ const Servico = () => {
 
             const servicosIds = Array.from(servicosSelecionados).map((servico) => (servico as HTMLInputElement).value);
 
-            setServicosSelecionados(servicosIds as never[]);
+            const servicosSelecionadosIds = Array.from(servicosSelecionados).map(servico => Number((servico as HTMLInputElement).value));
+            const servicosModal = servicos.filter(servico => servicosSelecionadosIds.includes(servico.id));
 
-            handleAgendar();
+            setServicosSelecionados(servicosIds as never[]);
+            setModalServico(servicosModal as never);
         } else {
             toast.error('Selecione pelo menos um serviço!', {
                 position: "top-right",
@@ -98,11 +102,8 @@ const Servico = () => {
         
         const total = arrayElementos.reduce((acc, curr) => acc + curr.price, 0);
         setValorTotal(total);
-    };
 
-    const handleAgendar = async () => {
-        sessionStorage.setItem('servicos', JSON.stringify(servicosSelecionados));
-        window.location.href = '/cliente/agendar/data';
+        setModalIsOpen(true);
     };
 
     const handleVoltar = () => {
@@ -122,9 +123,15 @@ const Servico = () => {
         }).reduce((acc, curr) => acc + curr, 0);
 
         setValorTotal(total);
-
-        console.log(total)
      };
+
+     const handleAgendar = async () => {
+        sessionStorage.setItem('agendei-servicos', servicosSelecionados.toString())
+
+        setTimeout(() => {
+            window.location.href = '/cliente/agendar/data';
+        }, 1000);
+    }
 
     return (
         <>
@@ -162,6 +169,48 @@ const Servico = () => {
                             </div>
                         </div>
                     </Form>
+                </div>
+                
+                <div>
+                    <Modal
+                        className={styles.modal}
+                        isOpen={modalIsOpen}
+                        onRequestClose={() => setModalIsOpen(false)}
+                        style={{
+                            overlay: {
+                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                backdropFilter: 'blur(5px)',
+                            },
+                            content: {
+                                width: '500px',
+                                height: '400px',
+                                margin: 'auto',
+                                borderRadius: '50px',
+                                background: '#fff',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'space-around',
+                                textAlign: 'center',
+                                gap: '15px',
+                            },
+                        }}
+                    >
+                        <h2 className={styles.tituloModal}>Serviços Selecionados</h2>
+                        <div className={styles.divServicosModal}>
+                            {modalServico && Array.isArray(modalServico) && modalServico.map((servico, item) => (
+                                <div className={styles.servicosModal} key={item}>
+                                    <h2 className={styles.titleServiceModal}>{servico.name}</h2>
+                                    <p><b>Preço: </b>R${servico.price}</p>
+                                </div>
+                            ))}
+                        </div>
+                        <p className={styles.textoModal}><b>Deseja prosseguir?</b></p>
+                        <div className={styles.divBtnModal}>
+                            <Button className={styles.btnModal} onClick={handleAgendar}>Sim</Button>
+                            <Button className={styles.btnModal} onClick={() => setModalIsOpen(false)}>Não</Button>
+                        </div>
+                    </Modal>
                 </div>
                 <Footer />
             </main>

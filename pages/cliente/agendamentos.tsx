@@ -29,6 +29,7 @@ interface Agendamento {
     service_names: string;
     status: string;
     total_price: number;
+    formattedDate: string;
 }
 
 const Agendamentos = () => {
@@ -62,6 +63,7 @@ const Agendamentos = () => {
                 });
 
                 setAgendamentos(updatedAgendamentos);
+                mudarData();
             } else {
                 toast.error('Erro ao buscar agendamentos!', {
                     position: "top-right",
@@ -96,6 +98,25 @@ const Agendamentos = () => {
         }
       }
 
+      const mudarData = () => {
+        const formatDate = (): Agendamento[] => {
+          const formattedAgendamentos = agendamentos.map((agendamento: Agendamento) => {
+            const date = new Date(agendamento.schedule.date);
+            const month = date.toLocaleString('pt-BR', { month: 'long' });
+            const formattedDate = `${date.getDate()} de ${month} ${date.getFullYear()}`;
+        
+            return {
+              ...agendamento,
+              formattedDate: formattedDate,
+            };
+          });
+        
+          return formattedAgendamentos;
+        };
+
+        setAgendamentos(formatDate());
+      }
+
     return (
         <main className={styles.main}>
             <Header />
@@ -106,7 +127,7 @@ const Agendamentos = () => {
                         return (
                             <div className={styles.card} key={index}>
                                 <div className={styles.cima}>
-                                    <h1 className={styles.tituloBtn}>{agendamento.schedule.date} às {agendamento.schedule.hour}</h1>
+                                    <h1 className={styles.tituloBtn}>{agendamento.formattedDate} às {agendamento.schedule.hour}</h1>
                                 </div>
                                 <div className={styles.baixo}>
                                     <p className={styles.subtituloBtn}><b>Profissional: </b>{agendamento.professional_name}</p>

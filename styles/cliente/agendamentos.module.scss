@@ -1,9 +1,7 @@
 .main {
     background-color: #FFF;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     height: 100vh;
@@ -17,7 +15,7 @@
     flex-direction: column;
     align-items: center;
 
-    margin-top: 150px;
+    margin-top: 550px;
 }
 
 .titulo {
@@ -33,8 +31,8 @@
     align-items: space-between;
     gap: 50px;
     flex-wrap: wrap;
-
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .card {
@@ -112,7 +110,6 @@
     }
 }
 
-/* Botão padrão */
 .status {
     width: 100px;
     height: 40px;
@@ -141,3 +138,70 @@
     background-color: #CD191E;
     color: #fff;
   }
+
+
+@media (max-height: 1024px) {
+    .container {
+        margin-top: 650px;
+    }
+  }
+  
+  @media (max-height: 690px) {
+    .container {
+        margin-top: 700px;
+    }
+  }
+
+@media (max-width: 1132px) {
+    .container {
+        margin-top: 550px;
+    }
+    .containerAgendamentos {
+        gap: 40px;
+    }
+
+    .card {
+        width: 320px;
+        height: 250px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .titulo {
+        font-size: 40px;
+    }
+
+    .subtitulo {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1105px) {
+    .container {
+        margin-top: 600px;
+    }
+
+    .containerAgendamentos {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1065px) {
+    .container {
+        margin-top: 600px;
+    }
+
+    .containerAgendamentos {
+        margin-top: 50px
+    }
+}
+
+@media (max-width: 705px) {
+    .container {
+        margin-top: 700px;
+    }
+
+    .containerAgendamentos {
+        margin-top: 50px
+    }
+}

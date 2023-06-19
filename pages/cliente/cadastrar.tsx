@@ -45,7 +45,7 @@ const Cadastrar = function () {
         console.log(email, password);
 
         try {
-            const response = await fetch(`"${apiUrl}/client/register"`, {
+            const response = await fetch('https://agendei-api.onrender.com/client/register', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

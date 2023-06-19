@@ -125,8 +125,8 @@ const Agendamentos = () => {
                     }
                     )}
                 </div>
-            </div>
             <Footer />
+            </div>
         </main>
     )
 }

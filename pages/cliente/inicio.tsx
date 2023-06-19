@@ -34,8 +34,6 @@ const Inicio = () => {
                         userData.id,
                     ];
 
-                    console.log(client_info);
-
                     setLogado(true);
                     setClientInfo(client_info as never[]);
                 } else {

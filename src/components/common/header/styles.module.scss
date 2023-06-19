@@ -8,9 +8,10 @@
 
     position: fixed;
     top: 0;
+    z-index: 1;
 
     padding: 16px 0px;
-    width: 100%;
+    width: 99%;
     height: 30px;
         
     background: rgba(255, 255, 255, 0.33);
@@ -19,6 +20,11 @@
         backdrop-filter: blur(7px);
         -webkit-backdrop-filter: blur(7px);
         border: 1px solid rgba(255, 255, 255, 0.48);
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        z-index: 9999;
+      }
 }
 
 .logo {

@@ -4,13 +4,14 @@
   background-color: #fff;
   overflow-x: hidden;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   flex-direction: column;
   height: 100vh;
 }
 
 .form{
+  align-self: center;
   display: flex;
   justify-content: center;
   flex-direction: column;

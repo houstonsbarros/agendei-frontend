@@ -182,8 +182,8 @@ const Servico = () => {
                                 backdropFilter: 'blur(5px)',
                             },
                             content: {
-                                width: '500px',
-                                height: '400px',
+                                maxWidth: '500px',
+                                maxHeight: '400px',
                                 margin: 'auto',
                                 borderRadius: '50px',
                                 background: '#fff',

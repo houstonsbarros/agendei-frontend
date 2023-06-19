@@ -160,6 +160,10 @@ const Data = () => {
         window.location.href = '/cliente/agendar/servico';
     };
 
+    const voltarParaCalendario = () => {
+        setSelectedTime('');
+    };
+
     return (
         <>
             <main className={styles.main}>
@@ -212,8 +216,8 @@ const Data = () => {
                                 backdropFilter: 'blur(5px)',
                             },
                             content: {
-                                width: '400px',
-                                height: '300px',
+                                maxWidth: '400px',
+                                maxHeight: '300px',
                                 margin: 'auto',
                                 borderRadius: '50px',
                                 background: '#fff',
@@ -236,8 +240,10 @@ const Data = () => {
                         </div>
                     </Modal>
                 </div>
-
-                <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
+                <div className={styles.divBtn}>
+                    <Button onClick={voltarParaCalendario} className={styles.btnData}>Selecionar Outra Data</Button>
+                    <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
+                </div>
                 <Footer />
             </main>
         </>

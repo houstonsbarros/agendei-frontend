@@ -1,5 +1,6 @@
 import Footer from '@/components/common/footer';
 import Header from '@/components/common/header';
+import { set } from 'date-fns';
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -34,7 +35,6 @@ interface Agendamento {
 
 const Agendamentos = () => {
     const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
-    const date = new Date();
 
     const getAgendamentos = async () => {
         try {
@@ -57,13 +57,19 @@ const Agendamentos = () => {
                     return addressObject;
                 });
 
+                const formattedDate = data.map((agendamento: Agendamento) => {
+                    const date = new Date(agendamento.schedule.date);
+                    const month = date.toLocaleString('pt-BR', { month: 'long' });
+                    const formattedDate = `${date.getDate()} de ${month} ${date.getFullYear()}`;
+                    return formattedDate;
+                });
+
                 const updatedAgendamentos = data.map((agendamento: Agendamento, index: number) => {
-                    const updatedAgendamento = { ...agendamento, professional_adress_json: addresses[index] };
+                    const updatedAgendamento = { ...agendamento, professional_adress_json: addresses[index], formattedDate: formattedDate[index] };
                     return updatedAgendamento;
                 });
 
                 setAgendamentos(updatedAgendamentos);
-                mudarData();
             } else {
                 toast.error('Erro ao buscar agendamentos!', {
                     position: "top-right",
@@ -83,6 +89,7 @@ const Agendamentos = () => {
 
     useEffect(() => {
         getAgendamentos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function getStatusClass(status: any) {
@@ -99,23 +106,26 @@ const Agendamentos = () => {
       }
 
       const mudarData = () => {
-        const formatDate = (): Agendamento[] => {
-          const formattedAgendamentos = agendamentos.map((agendamento: Agendamento) => {
-            const date = new Date(agendamento.schedule.date);
-            const month = date.toLocaleString('pt-BR', { month: 'long' });
-            const formattedDate = `${date.getDate()} de ${month} ${date.getFullYear()}`;
-        
-            return {
-              ...agendamento,
-              formattedDate: formattedDate,
-            };
-          });
-        
-          return formattedAgendamentos;
-        };
-
-        setAgendamentos(formatDate());
+        formatDate();
       }
+
+      const formatDate = (): Agendamento[] => {
+        const formattedAgendamentos = agendamentos.map((agendamento: Agendamento) => {
+          const date = new Date(agendamento.schedule.date);
+          const month = date.toLocaleString('pt-BR', { month: 'long' });
+          const formattedDate = `${date.getDate()} de ${month} ${date.getFullYear()}`;
+          return {
+            ...agendamento,
+            formattedDate: formattedDate,
+          };
+        });
+        
+        return formattedAgendamentos;
+      };
+
+      const handleVoltar = () => {
+          window.location.href = '/cliente/inicio';
+      };
 
     return (
         <main className={styles.main}>
@@ -146,6 +156,7 @@ const Agendamentos = () => {
                     }
                     )}
                 </div>
+                <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
             <Footer />
             </div>
         </main>

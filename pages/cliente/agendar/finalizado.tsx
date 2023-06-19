@@ -149,7 +149,6 @@ const Concluido = () => {
             <main className={styles.main}>
                 <Header />
                 <div className={styles.container}>
-                    <Image src="/relogio.gif" alt="Logo" width={80} height={80} />
                     <h1 className={styles.titulo}>Agendamento Concluído</h1>
                     {Array.isArray(agendamento) && agendamento.length > 0 && (
                         <div className={styles.informacoes}>
@@ -180,8 +179,10 @@ const Concluido = () => {
                         </div>
                     )}
                     
-                    <Button onClick={voltar} outline className={styles.btnVoltar}>Voltar</Button>
-                    <Button href="/cliente/agendamentos" outline className={styles.btnVoltar}>Ver Meus Agendamentos</Button>
+                    <div className={styles.divBtn}>
+                        <Button onClick={voltar} outline className={styles.btnVoltar}>Voltar</Button>
+                        <Button href="/cliente/agendamentos" outline className={styles.btnAgendamentos}>Ver Meus Agendamentos</Button>
+                        </div>
                 </div>
                 <Footer />
             </main>

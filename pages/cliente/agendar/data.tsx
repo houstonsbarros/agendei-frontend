@@ -161,7 +161,7 @@ const Data = () => {
     };
 
     const voltarParaCalendario = () => {
-        setSelectedTime('');
+        data.length = 0
     };
 
     return (
@@ -240,10 +240,7 @@ const Data = () => {
                         </div>
                     </Modal>
                 </div>
-                <div className={styles.divBtn}>
-                    <Button onClick={voltarParaCalendario} className={styles.btnData}>Selecionar Outra Data</Button>
                     <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
-                </div>
                 <Footer />
             </main>
         </>

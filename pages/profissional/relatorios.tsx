@@ -103,26 +103,26 @@ const Profissionais = () => {
                         </div>
                         <div className={styles.card}>
                             <div className={styles.cima}>
-                                <h1 className={styles.tituloBtn}>Agendamentos Finalizados</h1>
+                                <h1 className={styles.tituloBtn}>Finalizados</h1>
                             </div>
                             <div className={styles.baixo}>
-                                <p className={styles.subtituloBtn}><b className={styles.subtituloNumero}>{data[0].total_agendamentos_finalizados} </b>Finalizados</p>
+                                <p className={styles.subtituloBtn}><b className={styles.subtituloNumero}>{data[0].total_agendamentos_finalizados}</b><span className={styles.subtituloQuebrado}><p>Agendamentos</p><p>Finalizados</p></span></p>
                             </div>
                         </div>
                         <div className={styles.card}>
                             <div className={styles.cima}>
-                                <h1 className={styles.tituloBtn}>Agendamentos Pendentes</h1>
+                                <h1 className={styles.tituloBtn}>Pendentes</h1>
                             </div>
                             <div className={styles.baixo}>
-                                <p className={styles.subtituloBtn}><b className={styles.subtituloNumero}>{data[0].total_agendamentos_pendentes} </b>Pendentes</p>
+                                <p className={styles.subtituloBtn}><b className={styles.subtituloNumero}>{data[0].total_agendamentos_pendentes}</b><span className={styles.subtituloQuebrado}><p>Agendamentos</p><p>Pendentes</p></span></p>
                             </div>
                         </div>
                         <div className={styles.card}>
                             <div className={styles.cima}>
-                                <h1 className={styles.tituloBtn}>Agendamentos Cancelados</h1>
+                                <h1 className={styles.tituloBtn}>Cancelados</h1>
                             </div>
                             <div className={styles.baixo}>
-                                <p className={styles.subtituloBtn}><b className={styles.subtituloNumero}>{data[0].total_agendamentos_cancelados} </b>Clientes</p>
+                                <p className={styles.subtituloBtn}><b className={styles.subtituloNumero}>{data[0].total_agendamentos_cancelados}</b><span className={styles.subtituloQuebrado}><p>Agendamentos</p><p>Cancelados</p></span></p>
                             </div>
                         </div>
                     </div>

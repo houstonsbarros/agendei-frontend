@@ -88,10 +88,10 @@ const Login = function () {
 
     return (
         <>
-            <Head>
-                <title>Login - Agendei</title>
-                <link rel="icon" href="/favicon.png" />
-            </Head>
+        <Head>
+            <title>Login - Agendei</title>
+            <link rel="icon" href="/Favicon.svg" />
+        </Head>
             <main className={styles.main}>
                 <ToastContainer />
                 <Container className={styles.container} onSubmit={handleSubmit}>

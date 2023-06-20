@@ -53,10 +53,10 @@ const Inicio = () => {
 
     return (
         <>
-            <Head>
-                <title>Inicio Cliente - Agendei</title>
-                <link rel="icon" href="/favicon.png" />
-            </Head>
+        <Head>
+            <title>Início - Agendei</title>
+            <link rel="icon" href="/Favicon.svg" />
+        </Head>
             <main className={styles.main}>
                 <Header />
                 <div className={styles.container}>

@@ -162,7 +162,6 @@ const Agendamentos = () => {
                         )}
                     </div>
                     <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
-                    <Footer />
                 </div>
             </main>
         </>

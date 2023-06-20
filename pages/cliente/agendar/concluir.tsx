@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '@/components/common/header';
 import Footer from '@/components/common/footer';
+import Head from 'next/head';
 
 interface Servico {
     id: number;
@@ -68,7 +69,7 @@ const Finalizar = () => {
         if (servicosSelecionados) {
             const parsedServices = servicosSelecionados.split(',').map(Number);
             const stringServices = parsedServices.map(String);
-          
+
             setSelectedServices(stringServices);
         }
 
@@ -154,7 +155,7 @@ const Finalizar = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                
+
             }).then((response) => {
                 if (response.ok) {
 
@@ -193,7 +194,7 @@ const Finalizar = () => {
                 sessionStorage.removeItem('id-professional')
                 sessionStorage.setItem('agendei-agendamento', JSON.stringify(data));
             })
-            
+
         } catch (error) {
             console.log('Erro ao cadastrar o agendamento:', error);
         }
@@ -205,6 +206,10 @@ const Finalizar = () => {
 
     return (
         <>
+            <Head>
+                <title>Concluir Agendamento - Agendei</title>
+                <link rel="icon" href="/Favicon.svg" />
+            </Head>
             <main className={styles.main}>
                 <ToastContainer />
                 <Header />

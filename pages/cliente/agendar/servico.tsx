@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Header from '@/components/common/header';
 import Footer from '@/components/common/footer';
 import Modal from 'react-modal';
+import Head from 'next/head';
 
 interface Servico {
     id: number;
@@ -59,14 +60,14 @@ const Servico = () => {
             const description = element.getAttribute('data-description');
             const price = parseFloat(element.getAttribute('data-price') || '0');
             const duration = parseInt(element.getAttribute('data-duration') || '0', 10);
-          
+
             return {
-              name,
-              description,
-              price,
-              duration,
+                name,
+                description,
+                price,
+                duration,
             };
-          }) as Servico[];
+        }) as Servico[];
 
         if (servicosSelecionados.length > 0) {
             toast.success('Serviços selecionados!', {
@@ -99,7 +100,7 @@ const Servico = () => {
                 theme: "colored",
             });
         }
-        
+
         const total = arrayElementos.reduce((acc, curr) => acc + curr.price, 0);
         setValorTotal(total);
 
@@ -112,9 +113,9 @@ const Servico = () => {
 
     const mudarValor = () => {
         const servicosSelecionados = document.querySelectorAll('input[name="servicos"]:checked');
-      
+
         const servicosIds = Array.from(servicosSelecionados).map((servico) => (servico as HTMLInputElement).value);
-      
+
         const total = servicos.map((servico) => {
             if (servicosIds.includes(String(servico.id))) {
                 return servico.price;
@@ -123,9 +124,9 @@ const Servico = () => {
         }).reduce((acc, curr) => acc + curr, 0);
 
         setValorTotal(total);
-     };
+    };
 
-     const handleAgendar = async () => {
+    const handleAgendar = async () => {
         sessionStorage.setItem('agendei-servicos', servicosSelecionados.toString())
 
         setTimeout(() => {
@@ -135,6 +136,10 @@ const Servico = () => {
 
     return (
         <>
+            <Head>
+                <title>Selecione o Serviço - Agendei</title>
+                <link rel="icon" href="/Favicon.svg" />
+            </Head>
             <main className={styles.main}>
                 <ToastContainer />
                 <Header />
@@ -144,7 +149,7 @@ const Servico = () => {
                         <FormGroup className={styles.service} onChange={mudarValor}>
                             {servicos.map((servico, item) => (
                                 <div className={styles.servicosDiv} key={item}>
-                                    <Input type="checkbox" id={servico.name} name="servicos" value={servico.id}/>
+                                    <Input type="checkbox" id={servico.name} name="servicos" value={servico.id} />
                                     <Label check className={styles.card} htmlFor={servico.name}>
                                         <div className={styles.selecionado}>
                                             <Image src='/check.svg' alt='check' width={15} height={15} />
@@ -160,7 +165,7 @@ const Servico = () => {
                             ))}
 
                         </FormGroup>
-                        
+
                         <div className={styles.concluir}>
                             <p className={styles.valorTotal}><b>Valor total:</b> R${valorTotal}</p>
                             <div className={styles.btnGroup}>
@@ -170,7 +175,7 @@ const Servico = () => {
                         </div>
                     </Form>
                 </div>
-                
+
                 <div>
                     <Modal
                         className={styles.modal}

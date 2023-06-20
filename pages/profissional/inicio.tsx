@@ -52,8 +52,8 @@ const Inicio = () => {
     return (
         <>
             <Head>
-                <title>Inicio Cliente - Agendei</title>
-                <link rel="icon" href="/favicon.png" />
+                <title>Inicio - Agendei | Profissional</title>
+                <link rel="icon" href="/Favicon.svg" />
             </Head>
             <main className={styles.main}>
                 <HeaderProfessional />
@@ -63,7 +63,7 @@ const Inicio = () => {
                     <div className={styles.containerBtns}>
                         <Link href="/profissional/agendamentos" className={styles.agendar}>
                             <div className={styles.cima}>
-                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <FaChevronRight size="25px" className={styles.icone} />
                                 <h1 className={styles.tituloBtn}>Ver Agendamentos</h1>
                             </div>
                             <div className={styles.baixo}>
@@ -72,7 +72,7 @@ const Inicio = () => {
                         </Link>
                         <Link href="/profissional/relatorios" className={styles.agendamentos}>
                             <div className={styles.cima}>
-                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <FaChevronRight size="25px" className={styles.icone} />
                                 <h1 className={styles.tituloBtn}>Seus Relatórios</h1>
                             </div>
                             <div className={styles.baixo}>
@@ -81,7 +81,7 @@ const Inicio = () => {
                         </Link>
                         <Link href="/profissional/servicos" className={styles.agendar}>
                             <div className={styles.cima}>
-                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <FaChevronRight size="25px" className={styles.icone} />
                                 <h1 className={styles.tituloBtn}>Seus Serviços</h1>
                             </div>
                             <div className={styles.baixo}>
@@ -90,7 +90,7 @@ const Inicio = () => {
                         </Link>
                         <Link href="/profissional/agendar" className={styles.agendamentos}>
                             <div className={styles.cima}>
-                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <FaChevronRight size="25px" className={styles.icone} />
                                 <h1 className={styles.tituloBtn}>Agendar</h1>
                             </div>
                             <div className={styles.baixo}>
@@ -99,7 +99,7 @@ const Inicio = () => {
                         </Link>
                     </div>
                 </div>
-                <FooterProfessional/>
+                <FooterProfessional />
             </main>
         </>
     )

@@ -65,7 +65,7 @@ const Inicio = () => {
                     <div className={styles.containerBtns}>
                         <Link href="/cliente/agendar/profissionais" className={styles.agendar}>
                             <div className={styles.cima}>
-                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <FaChevronRight size="25px" className={styles.icone} />
                                 <h1 className={styles.tituloBtn}>Agendar Horário</h1>
                             </div>
                             <div className={styles.baixo}>
@@ -74,7 +74,7 @@ const Inicio = () => {
                         </Link>
                         <Link href="/cliente/agendamentos" className={styles.agendamentos}>
                             <div className={styles.cima}>
-                                <FaChevronRight size="25px" className={styles.icone}/>
+                                <FaChevronRight size="25px" className={styles.icone} />
                                 <h1 className={styles.tituloBtn}>Seus Agendamentos</h1>
                             </div>
                             <div className={styles.baixo}>
@@ -83,7 +83,7 @@ const Inicio = () => {
                         </Link>
                     </div>
                 </div>
-                <Footer/>
+                <Footer />
             </main>
         </>
     )

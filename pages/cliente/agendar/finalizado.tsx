@@ -1,6 +1,7 @@
 import Footer from '@/components/common/footer';
 import Header from '@/components/common/header';
 import PageSpinner from '@/components/common/spinner';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
@@ -146,6 +147,10 @@ const Concluido = () => {
 
     return (
         <>
+            <Head>
+                <title>Finalizado Com Sucesso - Agendei</title>
+                <link rel="icon" href="/Favicon.svg" />
+            </Head>
             <main className={styles.main}>
                 <Header />
                 <div className={styles.container}>
@@ -156,7 +161,7 @@ const Concluido = () => {
                                 <p className={styles.subtitulo}>Cliente:</p>
                                 <p className={styles.subtituloInfo}>{agendamento[0].client_name}</p>
                             </div>
-                            
+
                             <div className={styles.containerTexto}>
                                 <p className={styles.subtitulo}>Profissional:</p>
                                 <p className={styles.subtituloInfo}>{agendamento[0].professional_name}</p>
@@ -171,7 +176,7 @@ const Concluido = () => {
                                 <p className={styles.subtitulo}>Serviços:</p>
                                 <p className={styles.subtituloInfo}>{agendamento[0].service_names}</p>
                             </div>
-                            
+
                             <div className={styles.containerTexto}>
                                 <p className={styles.subtitulo}>Valor Total:</p>
                                 <p className={styles.subtituloInfo}>R$ {agendamento[0].total_price}</p>
@@ -182,7 +187,7 @@ const Concluido = () => {
                     <div className={styles.divBtn}>
                         <Button onClick={voltar} outline className={styles.btnVoltar}>Voltar</Button>
                         <Button href="/cliente/agendamentos" outline className={styles.btnAgendamentos}>Ver Meus Agendamentos</Button>
-                        </div>
+                    </div>
                 </div>
                 <Footer />
             </main>

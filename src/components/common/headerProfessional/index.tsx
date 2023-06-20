@@ -28,7 +28,7 @@ const Header = function () {
         <>
             <Container className={styles.header}>
                 <Link href="/profissional/inicio">
-                    <Image src="/agendei.png" alt="Perfil" className={styles.logo} width={100} height={30} />
+                    <Image src="/AgendeiLogoBranca.svg" alt="Perfil" className={styles.logo} width={100} height={30} />
                 </Link>
                 <p className={styles.text}><a className={styles.link} onClick={toggleMenu}>Meu Perfil
                 {selectedIcon ? (

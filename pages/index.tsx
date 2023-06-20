@@ -15,7 +15,7 @@ const Home = () => {
         <>
             <Head>
                 <title>Início - Agendei</title>
-                <link rel="icon" href="/favicon.png"/>
+                <link rel="icon" href="/Favicon.svg"/>
             </Head>
             <main className={styles.background}>
                 <div className={styles.container}>

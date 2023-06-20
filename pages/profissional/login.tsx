@@ -23,7 +23,7 @@ const Login = function () {
         event.preventDefault();
 
         setIsLoading(true);
-    
+
 
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get("email");
@@ -54,7 +54,7 @@ const Login = function () {
                     progress: undefined,
                     theme: "colored",
                 });
-                
+
 
                 setIsLoading(false);
             }
@@ -69,20 +69,20 @@ const Login = function () {
                 progress: undefined,
                 theme: "colored",
             });
-            
+
             setIsLoading(false);
         }
     };
 
-    if(logado){
+    if (logado) {
         window.location.href = "/profissional/inicio";
     }
 
     return (
         <>
             <Head>
-                <title>Login - Agendei</title>
-                <link rel="icon" href="/favicon.png" />
+                <title>Login - Agendei | Profissional</title>
+                <link rel="icon" href="/Favicon.svg" />
             </Head>
             <main className={styles.main}>
                 <ToastContainer />
@@ -127,16 +127,16 @@ const Login = function () {
                         </FormGroup>
                         {isLoading ? (
                             <Button type="submit" outline className={styles.btnLoading}>
-                                <PongSpinner color="#FFF" className={styles.spinner}/>
+                                <PongSpinner color="#FFF" className={styles.spinner} />
                             </Button>
                         ) : (
                             <Button type="submit" outline className={styles.btn}>
-                            Entrar
+                                Entrar
                             </Button>
                         )}
                     </Form>
                 </Container>
-                <FooterProfessional/>
+                <FooterProfessional />
             </main>
         </>
     )

@@ -27,7 +27,7 @@ const Login = function () {
         event.preventDefault();
 
         setIsLoading(true);
-    
+
 
         const formData = new FormData(event.target as HTMLFormElement);
         const email = formData.get("email");
@@ -58,7 +58,7 @@ const Login = function () {
                     progress: undefined,
                     theme: "colored",
                 });
-                
+
 
                 setIsLoading(false);
             }
@@ -73,17 +73,17 @@ const Login = function () {
                 progress: undefined,
                 theme: "colored",
             });
-            
+
             setIsLoading(false);
         }
     };
 
-    if(logado){
+    if (logado) {
         setTimeout(() => {
             window.location.href = "/cliente/inicio";
         }, 2500);
-        
-        return <Carregar/>
+
+        return <Carregar />
     }
 
     return (
@@ -135,17 +135,17 @@ const Login = function () {
                         </FormGroup>
                         {isLoading ? (
                             <Button type="submit" outline className={styles.btnLoading}>
-                                <PongSpinner color="#FFF" className={styles.spinner}/>
+                                <PongSpinner color="#FFF" className={styles.spinner} />
                             </Button>
                         ) : (
                             <Button type="submit" outline className={styles.btn}>
-                            Entrar
+                                Entrar
                             </Button>
                         )}
                         <p className={styles.cadastrar}><Link href="/cliente/cadastrar" className={styles.cadastrarLink}>Crie agora mesmo sua conta</Link></p>
                     </Form>
                 </Container>
-                <Footer/>
+                <Footer />
             </main>
         </>
     )

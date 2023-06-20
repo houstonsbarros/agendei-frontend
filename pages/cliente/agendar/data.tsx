@@ -11,6 +11,7 @@ import Header from '@/components/common/header';
 import Footer from '@/components/common/footer';
 import Modal from 'react-modal';
 import { set } from 'date-fns';
+import Head from 'next/head';
 
 interface Servico {
     id: number;
@@ -166,6 +167,10 @@ const Data = () => {
 
     return (
         <>
+            <Head>
+                <title>Selecionar Data e Horário - Agendei</title>
+                <link rel="icon" href="/Favicon.svg" />
+            </Head>
             <main className={styles.main}>
                 <ToastContainer />
                 <Header />
@@ -240,7 +245,7 @@ const Data = () => {
                         </div>
                     </Modal>
                 </div>
-                    <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
+                <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
                 <Footer />
             </main>
         </>

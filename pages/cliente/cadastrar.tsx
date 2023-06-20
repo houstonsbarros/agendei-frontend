@@ -71,7 +71,7 @@ const Cadastrar = function () {
                     theme: "colored",
                 });
 
-                
+
                 setIsLoading(true);
                 setLogado(true);
             } else {
@@ -91,18 +91,19 @@ const Cadastrar = function () {
         }
     };
 
-    if(logado){
+    if (logado) {
         setTimeout(() => {
             window.location.href = "/cliente/inicio";
         }, 2500);
-        
-        return <Carregar/>
+
+        return <Carregar />
     }
 
     return (
         <>
             <Head>
                 <title>Cadastrar - Agendei</title>
+                <link rel="icon" href="/Favicon.svg" />
             </Head>
             <main className={styles.main}>
                 <ToastContainer />
@@ -200,17 +201,17 @@ const Cadastrar = function () {
                                 </div>
                             </FormGroup>
                         </div>
-                            {isLoading ? (
-                                <Button type="submit" outline className={styles.btnLoading}>
-                                    <PongSpinner color="#FFF" className={styles.spinner} />
-                                </Button>
-                            ) : (
-                                <Button type="submit" outline className={styles.btn}>
-                                    Cadastrar
-                                </Button>
-                            )}
-                            <p className={styles.cadastrar}>Já possui uma conta? <Link href="/cliente/login" className={styles.cadastrarLink}>
-                                Logar-se</Link></p>
+                        {isLoading ? (
+                            <Button type="submit" outline className={styles.btnLoading}>
+                                <PongSpinner color="#FFF" className={styles.spinner} />
+                            </Button>
+                        ) : (
+                            <Button type="submit" outline className={styles.btn}>
+                                Cadastrar
+                            </Button>
+                        )}
+                        <p className={styles.cadastrar}>Já possui uma conta? <Link href="/cliente/login" className={styles.cadastrarLink}>
+                            Logar-se</Link></p>
                     </Form>
                 </Container>
                 <Footer />

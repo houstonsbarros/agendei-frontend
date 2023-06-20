@@ -89,77 +89,83 @@ const Agendamentos = () => {
 
     useEffect(() => {
         getAgendamentos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function getStatusClass(status: any) {
         switch (status) {
-          case 'Concluído':
-            return styles['status--concluido'];
-          case 'Pendente':
-            return styles['status--pendente'];
-          case 'Cancelado':
-            return styles['status--cancelado'];
-          default:
-            return '';
+            case 'Concluído':
+                return styles['status--concluido'];
+            case 'Pendente':
+                return styles['status--pendente'];
+            case 'Cancelado':
+                return styles['status--cancelado'];
+            default:
+                return '';
         }
-      }
+    }
 
-      const mudarData = () => {
+    const mudarData = () => {
         formatDate();
-      }
+    }
 
-      const formatDate = (): Agendamento[] => {
+    const formatDate = (): Agendamento[] => {
         const formattedAgendamentos = agendamentos.map((agendamento: Agendamento) => {
-          const date = new Date(agendamento.schedule.date);
-          const month = date.toLocaleString('pt-BR', { month: 'long' });
-          const formattedDate = `${date.getDate()} de ${month} ${date.getFullYear()}`;
-          return {
-            ...agendamento,
-            formattedDate: formattedDate,
-          };
+            const date = new Date(agendamento.schedule.date);
+            const month = date.toLocaleString('pt-BR', { month: 'long' });
+            const formattedDate = `${date.getDate()} de ${month} ${date.getFullYear()}`;
+            return {
+                ...agendamento,
+                formattedDate: formattedDate,
+            };
         });
-        
-        return formattedAgendamentos;
-      };
 
-      const handleVoltar = () => {
-          window.location.href = '/cliente/inicio';
-      };
+        return formattedAgendamentos;
+    };
+
+    const handleVoltar = () => {
+        window.location.href = '/cliente/inicio';
+    };
 
     return (
-        <main className={styles.main}>
-            <Header />
-            <div className={styles.container}>
-                <h1 className={styles.titulo}>Olá, você tem os seguintes agendamentos</h1>
-                <div className={styles.containerAgendamentos}>
-                    {agendamentos.map((agendamento, index) => {
-                        return (
-                            <div className={styles.card} key={index}>
-                                <div className={styles.cima}>
-                                    <h1 className={styles.tituloBtn}>{agendamento.formattedDate} às {agendamento.schedule.hour}</h1>
+        <>
+            <Head>
+                <title>Agendamentos - Agendei</title>
+                <link rel="icon" href="/Favicon.svg" />
+            </Head>
+            <main className={styles.main}>
+                <Header />
+                <div className={styles.container}>
+                    <h1 className={styles.titulo}>Olá, você tem os seguintes agendamentos</h1>
+                    <div className={styles.containerAgendamentos}>
+                        {agendamentos.map((agendamento, index) => {
+                            return (
+                                <div className={styles.card} key={index}>
+                                    <div className={styles.cima}>
+                                        <h1 className={styles.tituloBtn}>{agendamento.formattedDate} às {agendamento.schedule.hour}</h1>
+                                    </div>
+                                    <div className={styles.baixo}>
+                                        <p className={styles.subtituloBtn}><b>Profissional: </b>{agendamento.professional_name}</p>
+                                        <p className={styles.subtituloBtn}><b>Endereço: </b>
+                                            {agendamento.professional_adress_json.street}, {agendamento.professional_adress_json.number}, {agendamento.professional_adress_json.complement}, {agendamento.professional_adress_json.city}, {agendamento.professional_adress_json.state}
+                                        </p>
+                                        <p className={styles.subtituloBtn}><b>Serviços: </b>{agendamento.service_names}</p>
+                                        <p className={styles.subtituloBtn}><b>Valor Total: </b>R$ {agendamento.total_price}</p>
+                                        <p className={styles.subtituloBtn}><b>Forma de Pagamento: </b>{agendamento.payment.method} - {agendamento.payment.status}</p>
+                                        <Button className={`${styles.status} ${getStatusClass(agendamento.status)}`}>
+                                            {agendamento.status}
+                                        </Button>
+                                    </div>
                                 </div>
-                                <div className={styles.baixo}>
-                                    <p className={styles.subtituloBtn}><b>Profissional: </b>{agendamento.professional_name}</p>
-                                    <p className={styles.subtituloBtn}><b>Endereço: </b>
-                                    {agendamento.professional_adress_json.street}, {agendamento.professional_adress_json.number}, {agendamento.professional_adress_json.complement}, {agendamento.professional_adress_json.city}, {agendamento.professional_adress_json.state}
-                                    </p>
-                                    <p className={styles.subtituloBtn}><b>Serviços: </b>{agendamento.service_names}</p>
-                                    <p className={styles.subtituloBtn}><b>Valor Total: </b>R$ {agendamento.total_price}</p>
-                                    <p className={styles.subtituloBtn}><b>Forma de Pagamento: </b>{agendamento.payment.method} - {agendamento.payment.status}</p>
-                                    <Button className={`${styles.status} ${getStatusClass(agendamento.status)}`}>
-                                        {agendamento.status}
-                                    </Button>
-                                </div>
-                            </div>
-                        )
-                    }
-                    )}
+                            )
+                        }
+                        )}
+                    </div>
+                    <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
+                    <Footer />
                 </div>
-                <Button onClick={handleVoltar} className={styles.btnVoltar}>Voltar</Button>
-            <Footer />
-            </div>
-        </main>
+            </main>
+        </>
     )
 }
 

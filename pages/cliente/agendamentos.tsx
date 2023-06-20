@@ -65,7 +65,7 @@ const Agendamentos = () => {
                 });
 
                 const updatedAgendamentos = data.map((agendamento: Agendamento, index: number) => {
-                    const updatedAgendamento = { ...agendamento, professional_adress_json: addresses[index], formattedDate: formattedDate[index] };
+                    const updatedAgendamento = { ...agendamento, professional_adress_json: addresses[index] };
                     return updatedAgendamento;
                 });
 
@@ -127,6 +127,20 @@ const Agendamentos = () => {
         window.location.href = '/cliente/inicio';
     };
 
+    const formatDatee = (dateString: string) => {
+        const date = new Date(formatDateString(dateString));
+        return date.toLocaleDateString('pt-BR');
+    };
+
+    const formatDateString = (dateString: string) => {
+        if (typeof dateString === 'string') {
+            const [day, month, year] = dateString.split('/');
+            return `${year}-${month}-${day}`;
+        }
+        return dateString;
+    };
+
+
     return (
         <>
             <Head>
@@ -142,7 +156,7 @@ const Agendamentos = () => {
                             return (
                                 <div className={styles.card} key={index}>
                                     <div className={styles.cima}>
-                                        <h1 className={styles.tituloBtn}>{agendamento.formattedDate} às {agendamento.schedule.hour}</h1>
+                                        <h1 className={styles.tituloBtn}>{formatDatee(agendamento.schedule.date)} às {agendamento.schedule.hour}</h1>
                                     </div>
                                     <div className={styles.baixo}>
                                         <p className={styles.subtituloBtn}><b>Profissional: </b>{agendamento.professional_name}</p>

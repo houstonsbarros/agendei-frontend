@@ -1,0 +1,351 @@
+.main {
+    background-color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    min-height: 70vh;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 50px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 50px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+}
+
+
+.containerBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-between;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.card {
+    width: 260px;
+    height: 180px;
+
+    background: #FFFFFF;
+    border-radius: 50px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+}
+
+.cima {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    background: #0053CC;
+    width: 100%;
+    height: 60px;
+
+    border-radius: 50px 50px 0px 0px;
+
+    & .tituloBtn, & .icone {
+        font-size: 26px;
+        color: #FFFFFF;
+        font-weight: 500;
+    }
+}
+
+.baixo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 140px;
+
+    margin-top: -10px;
+
+    & .subtituloBtn {
+        color: #000;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 5px;
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+}
+
+.containerServicos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-evenly;
+
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-grow: inherit;
+    margin-top: 10px;
+    margin-bottom: 50px;
+} 
+
+.titleservice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 800;
+    font-size: 20px;
+    color: #0053CC;
+    
+    margin-left: 10px;
+}
+
+
+
+.concluir {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & .valorTotal {
+        font-weight: 800px;
+        margin-bottom: -10px;
+    }
+}
+
+.divServicosModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.servicosModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 160px;
+    height: 70px;
+
+    background: #ffffff;
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+
+.titleServiceModal {
+    font-weight: 800;
+    font-size: 18px;
+    color: #0053CC;
+}
+
+.divBtnModal {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.btnModal {
+    width: 90px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 48px;
+    text-align: center;
+    background-color: #0053CC;
+    color: #fff;
+
+    
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+  
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+        background-color: #fff;
+        color: #0053CC;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.btnGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    gap: 20px;
+}
+
+.btnEditar {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #f7f7f7;
+    border-radius: 50px;
+    margin-top: 10px;
+    border: none;
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: center;
+    color: #CD191E;
+  
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+  
+    &:hover {
+        background-color: #CD191E;
+        color: #f7f7f7;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.btnExcluir {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #0053CC;
+    border-radius: 50px;
+    margin-top: 10px;
+    border: none;
+    
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: center;
+    color: #F4F4F4;
+
+    
+    border: 1px solid #F4F4F4;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+  
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+        background-color: #F4F4F4;
+        color: #0053CC;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@media (max-width: 545px) {
+    .title {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .titleservice {
+        font-size: 18px;
+    }
+    
+    .card {
+        width: 180px;
+        height: 70px;
+    
+        margin: 10px 3px;
+    
+        & .informacoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+    
+            font-size: 12px;
+        }
+    }
+
+    .servicosDiv {
+        & Input[type="checkbox"]:checked + .card {
+            & .titleservice {
+                color: #fff !important;
+                font-size: 18px !important;
+            }
+    
+            & .selecionado {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+            
+                position: absolute;
+            
+                gap: 5px;
+            
+                width: 120px;
+                height: 20px;
+            
+                margin-bottom: 75px;
+            
+                background: #0053CC;
+                border: 1px solid #F4F4F4;
+                box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+                border-radius: 50px;
+            
+                & .selecionadoText {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+
+    .btnGroup {
+        flex-direction: column-reverse;
+        margin: 0;
+        gap: 10px;
+    }
+
+    .btnSelecionar {
+        margin-top: 20px;
+    }
+
+    .btnVoltar {
+        margin-top: 0px;
+    }
+}

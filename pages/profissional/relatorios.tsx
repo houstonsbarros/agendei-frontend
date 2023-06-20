@@ -14,6 +14,7 @@ interface Relatorio {
     total_agendamentos_finalizados: string;
     total_agendamentos_pendentes: string;
     total_clientes: string;
+    total_valor_servicos_finalizados: string;
 }
 
 const Profissionais = () => {
@@ -99,6 +100,14 @@ const Profissionais = () => {
                             </div>
                             <div className={styles.baixo}>
                                 <p className={styles.subtituloBtn}><b className={styles.subtituloNumero}>{data[0].total_agendamentos_dia_atual} </b>Agendamentos</p>
+                            </div>
+                        </div>
+                        <div className={styles.card}>
+                            <div className={styles.cima}>
+                                <h1 className={styles.tituloBtn}>Total Ganho Até Hoje</h1>
+                            </div>
+                            <div className={styles.baixo}>
+                                <p className={styles.subtituloBtn}>R$ <b className={styles.subtituloNumero}>{data[0].total_valor_servicos_finalizados}</b><span className={styles.subtituloQuebrado}><p>Total</p><p>Ganho</p></span></p>
                             </div>
                         </div>
                         <div className={styles.card}>

@@ -1,0 +1,172 @@
+.main {
+    background-color: #15161A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.titulo {
+    font-weight: 700;
+    font-size: 56px;
+    text-align: center;
+    color: #f7f7f7;
+}
+
+.subtitulo {
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+    color: #f7f7f7;
+    margin-bottom: -20px;
+}
+
+.containerBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-between;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    gap: 50px;
+}
+
+.cima {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    background: #0053CC;
+    width: 100%;
+    height: 70px;
+
+    border-radius: 50px 50px 0px 0px;
+
+    & .tituloBtn, & .icone {
+        color: #f7f7f7;
+        font-weight: 500;
+    }
+}
+
+.baixo {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 70px;
+
+    & .subtituloBtn {
+        color: #f7f7f7;
+        font-weight: 500;
+    }
+}
+
+.agendar, .agendamentos {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+
+    width: 450px;
+    height: 140px;
+
+    background: #09090A;
+    border: 1px solid #09090A;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 50px;
+}
+
+.agendar:hover, .agendamentos:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+
+    transition: 0.5s;
+}
+
+@media (max-width: 970px) {
+    .containerBtns {
+        margin-bottom: 50px;
+        gap: 20px;
+    }
+
+    .agendar, .agendamentos {
+        width: 350px;
+    }
+
+    .titulo {
+        margin-top: 50px;
+        font-size: 40px;
+    }
+
+    .subtitulo {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 750px) {
+    .container {
+        margin-top: 60px;
+    }
+
+    .containerBtns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .agendar, .agendamentos {
+        width: 360px;
+    }
+
+    .titulo {
+        font-size: 40px;
+    }
+
+    .subtitulo {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 380px) {
+    .containerBtns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .agendar, .agendamentos {
+        width: 320px;
+    }
+
+    .tituloBtn {
+        font-size: 24px;
+    }
+
+    .subtituloBtn {
+        text-align: center;
+    }
+}
+
+@media (max-height: 500px) {
+    .container {
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+}

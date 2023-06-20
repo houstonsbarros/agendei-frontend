@@ -178,7 +178,7 @@ const Concluido = () => {
                             </div>
                         </div>
                     )}
-                    
+
                     <div className={styles.divBtn}>
                         <Button onClick={voltar} outline className={styles.btnVoltar}>Voltar</Button>
                         <Button href="/cliente/agendamentos" outline className={styles.btnAgendamentos}>Ver Meus Agendamentos</Button>

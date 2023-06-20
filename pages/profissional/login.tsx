@@ -1,17 +1,13 @@
-import styles from '../../styles/loginCliente.module.scss'
+import styles from '../../styles/profissional/login.module.scss';
 import Head from 'next/head'
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import Image from 'next/image';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Link from 'next/link';
-import Footer from '@/components/common/footer';
-import Loading from 'react-loading';
 import { PongSpinner, SwapSpinner } from 'react-spinners-kit';
-import Carregar from '@/components/carregar';
+import FooterProfessional from '@/components/common/footerProfessional';
 
 const Login = function () {
 
@@ -44,7 +40,7 @@ const Login = function () {
 
             if (response.ok) {
                 const data = await response.json();
-                sessionStorage.setItem('agendei-token', data.token);
+                sessionStorage.setItem('agendei-token-professional', data.token);
 
                 setLogado(true)
             } else {
@@ -79,11 +75,7 @@ const Login = function () {
     };
 
     if(logado){
-        setTimeout(() => {
-            window.location.href = "/profissional/inicio";
-        }, 2500);
-        
-        return <Carregar/>
+        window.location.href = "/profissional/inicio";
     }
 
     return (
@@ -142,10 +134,9 @@ const Login = function () {
                             Entrar
                             </Button>
                         )}
-                        <p className={styles.cadastrar}><Link href="/cliente/cadastrar" className={styles.cadastrarLink}>Crie agora mesmo sua conta</Link></p>
                     </Form>
                 </Container>
-                <Footer/>
+                <FooterProfessional/>
             </main>
         </>
     )

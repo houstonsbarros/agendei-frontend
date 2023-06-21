@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import Link from 'next/link';
 
-const Header = function () {
+const HeaderProfessional = function () {
     const [showMenu, setShowMenu] = useState(false);
     const [selectedIcon, setSelectedIcon] = useState(false);
 
@@ -49,4 +49,4 @@ const Header = function () {
     );
 };
 
-export default Header;
+export default HeaderProfessional;

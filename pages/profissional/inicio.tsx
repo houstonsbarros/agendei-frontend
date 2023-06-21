@@ -88,7 +88,7 @@ const Inicio = () => {
                                 <p className={styles.subtituloBtn}>Gerencie seus Serviços</p>
                             </div>
                         </Link>
-                        <Link href="/profissional/agendar" className={styles.agendamentos}>
+                        <Link href="" className={styles.agendamentos}>
                             <div className={styles.cima}>
                                 <FaChevronRight size="25px" className={styles.icone} />
                                 <h1 className={styles.tituloBtn}>Agendar</h1>

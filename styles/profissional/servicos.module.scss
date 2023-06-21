@@ -1,7 +1,5 @@
 .main {
-    background-color: #FFF;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+    background-color: #101112;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,17 +27,17 @@
     flex-direction: column;
     align-items: center;
 
-    gap: 50px;
+    gap: 5px;
 }
 
-.titulo {
+.title {
     display: flex;
     justify-content: center;
     align-items: center;
     
     font-weight: 600;
-    font-size: 22px;
     text-align: center;
+    color: #fff;
 }
 
 
@@ -52,16 +50,49 @@
     gap: 50px;
 }
 
+.btnNovo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 15.625rem;
+    height: 3.125rem;
+    background: #0053CC;
+    border-radius: 50px;
+    border: none;
+
+    margin: -20px;
+    
+    font-weight: 400;
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+  
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+        background-color: #fff;
+        color: #0053CC;
+        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+    }
+  
+    &:focus {
+      background: #0053CC;
+      color: #fff;
+    }
+}
+
 .card {
     width: 260px;
     height: 180px;
 
-    background: #FFFFFF;
+    background: #15161A;
+    border: 1px solid #15161A;
     border-radius: 50px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
-    border: 1px solid rgba(255, 255, 255, 0.48);
 }
 
 .cima {
@@ -96,7 +127,7 @@
     margin-top: -10px;
 
     & .subtituloBtn {
-        color: #000;
+        color: #fff;
         text-align: center;
         font-size: 14px;
         font-weight: 500;
@@ -132,19 +163,6 @@
 }
 
 
-
-.concluir {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    & .valorTotal {
-        font-weight: 800px;
-        margin-bottom: -10px;
-    }
-}
-
 .divServicosModal {
     display: flex;
     justify-content: center;
@@ -170,45 +188,9 @@
     border-radius: 50px;
 }
 
-.titleServiceModal {
+.titulo {
     font-weight: 800;
-    font-size: 18px;
-    color: #0053CC;
-}
-
-.divBtnModal {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-}
-
-.btnModal {
-    width: 90px;
-    height: 50px;
-    border-radius: 50px;
-    border: none;
-    
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 48px;
-    text-align: center;
-    background-color: #0053CC;
     color: #fff;
-
-    
-    border: 1px solid #F4F4F4;
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
-  
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  
-    &:hover {
-        background-color: #fff;
-        color: #0053CC;
-        box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
-    }
 }
 
 .btnGroup {
@@ -260,7 +242,7 @@
     color: #F4F4F4;
 
     
-    border: 1px solid #F4F4F4;
+    border: 1px solid #15161A;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
   
     cursor: pointer;
@@ -271,6 +253,93 @@
         color: #0053CC;
         box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
     }
+}
+
+.label{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+.label{
+  position: relative;
+  padding-top: 13px;
+  font-weight: 500;
+}
+
+.label Input{
+    background-color: #101112;
+  border: 1px solid #f7f7f7;
+  border-radius: 50px;
+  outline: none;
+  color: #fff;  
+  min-width: 400px;
+  padding: 15px 20px;
+  font-size: 16px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+}
+
+.label input:focus{
+  border: 2px solid #0053CC;
+}
+
+.label input::placeholder{
+  color:transparent;
+}
+
+.label label{
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 15px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  background-color: #101112;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.label input:focus + label,
+.label input:not(:placeholder-shown) + label{
+  font-size: 13px;
+  top: 0;
+  color: #fff;
+}
+
+.btn {
+  width: 15.625rem;
+  height: 3.125rem;
+  background: #0053CC;
+  border-radius: 50px;
+  margin-top: 30px;
+  border: none;
+  
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+  color: #fff;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+      background-color: #fff;
+      color: #0053CC;
+      box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    background: #0053CC;
+    color: #fff;
+  }
 }
 
 @media (max-width: 545px) {
@@ -347,5 +416,68 @@
 
     .btnVoltar {
         margin-top: 0px;
+    }
+}
+
+@media (max-width: 545px) {  
+    .card {
+        width: 180px;
+        height: 180px;
+    
+        margin: 10px 3px;
+
+    
+        & .informacoes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 12px;
+        }
+    }
+
+    .cima {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        font-size: 10px;
+
+        & .tituloBtn {
+            color: #fff;
+            text-align: center;
+            font-weight: 500;
+            margin-top: 5px;
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+    }
+
+    .baixo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        width: 100%;
+        height: 140px;
+    
+        margin-top: -10px;
+    
+        & .subtituloBtn {
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 5px;
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+    }
+
+    .btnGroup {
+        flex-direction: row-reverse;
+        margin: 0;
     }
 }

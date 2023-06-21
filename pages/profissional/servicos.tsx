@@ -5,11 +5,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-day-picker/dist/style.css';
 import Image from 'next/image';
-import Header from '@/components/common/header';
-import Footer from '@/components/common/footer';
+import HeaderProfessional from '@/components/common/headerProfessional';
+import FooterProfessional from '@/components/common/footerProfessional';
 import Modal from 'react-modal';
 import Head from 'next/head';
 import { BiEdit, BiTrash } from 'react-icons/bi';
+import { TbNewSection } from 'react-icons/tb';
 import PageSpinner from '@/components/common/spinner';
 
 interface Servico {
@@ -27,8 +28,25 @@ const Servico = () => {
     const [valorTotal, setValorTotal] = useState(0);
     const [servicosSelecionados, setServicosSelecionados] = useState<Servico[]>([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modalServico, setModalServico] = useState<Servico>();
+    const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
+    const [modalServico, setModalServico] = useState();
     const [id, setIdProfessional] = useState(0);
+    const [serviceName, setServiceName] = useState('');
+    const [serviceDescription, setServiceDescription] = useState('');
+    const [servicePrice, setServicePrice] = useState(0);
+
+    const handleNameChange = (e: any) => {
+        setServiceName(e.target.value);
+    };
+
+    const handleDescriptionChange = (e: any) => {
+        setServiceDescription(e.target.value);
+    };
+
+    const handlePriceChange = (e: any) => {
+        setServicePrice(e.target.value);
+    };
+    
 
     useEffect(() => {
         const token = sessionStorage.getItem('agendei-token-professional');
@@ -58,7 +76,7 @@ const Servico = () => {
         fetchProfessional();
     }, []);
 
-    
+
 
     const fetchServicos = async () => {
         try {
@@ -79,7 +97,7 @@ const Servico = () => {
         }
     };
 
-    if(id != 0) {
+    if (id != 0) {
         fetchServicos();
     } else {
         <PageSpinner />
@@ -96,7 +114,7 @@ const Servico = () => {
     const handleDelete = async (id: number) => {
         try {
             const token = sessionStorage.getItem('agendei-token-professional');
-            
+
             const response = await fetch(`https://agendei-api.onrender.com/service/delete/${id}`, {
                 method: "DELETE",
                 headers: {
@@ -132,6 +150,20 @@ const Servico = () => {
         }
     }
 
+    const handleEdit = async (id: number) => {
+        sessionStorage.setItem('agendei-servico', id.toString());
+
+        const servico = sessionStorage.getItem('agendei-servico');
+
+        if(servico) {
+            window.location.href = '/profissional/servicos/editar';
+        }
+    }
+
+    const handleCreate = async () => {
+        window.location.href = '/profissional/servicos/novo';
+    }
+
     return (
         <>
             <Head>
@@ -140,10 +172,10 @@ const Servico = () => {
             </Head>
             <main className={styles.main}>
                 <ToastContainer />
-                <Header />
+                <HeaderProfessional />
                 <div className={styles.container}>
                     <h1 className={styles.title}>Olá, Profissional, aqui você pode gerenciar os seus serviços</h1>
-                    <Button className={styles.btnExcluir}><BiEdit /> Novo Serviço</Button>
+                    <Button className={styles.btnNovo} onClick={handleCreate}><TbNewSection /> Novo Serviço</Button>
                     <div className={styles.containerServicos}>
                         {servicos.map((servico, index) => (
                             <div className={styles.card} key={index}>
@@ -153,12 +185,9 @@ const Servico = () => {
                                 <div className={styles.baixo}>
                                     <p className={styles.subtituloBtn}><b>Descrição: </b>{servico.description}</p>
                                     <p className={styles.subtituloBtn}><b>Valor: </b>R${servico.price}</p>
-                                    <p className={styles.subtituloBtn}><b>Duração: </b>{servico.duration} min</p>
 
                                     <div className={styles.btnGroup}>
-                                        <Button onClick={() => {
-                                            handleDelete(servico.id)
-                                        }} className={styles.btnExcluir}><BiEdit /></Button>
+                                        <Button onClick={() => handleEdit(servico.id)} className={styles.btnExcluir}><BiEdit /></Button>
                                         <Button onClick={() => {
                                             handleDelete(servico.id)
                                         }} className={styles.btnEditar}><BiTrash /></Button>
@@ -168,49 +197,7 @@ const Servico = () => {
                         ))}
                     </div>
                 </div>
-
-                <div>
-                    <Modal
-                        className={styles.modal}
-                        isOpen={modalIsOpen}
-                        onRequestClose={() => setModalIsOpen(false)}
-                        style={{
-                            overlay: {
-                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                backdropFilter: 'blur(5px)',
-                            },
-                            content: {
-                                maxWidth: '500px',
-                                maxHeight: '400px',
-                                margin: 'auto',
-                                borderRadius: '50px',
-                                background: '#fff',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                justifyContent: 'space-around',
-                                textAlign: 'center',
-                                gap: '15px',
-                            },
-                        }}
-                    >
-                        <h2 className={styles.tituloModal}>Serviços Selecionados</h2>
-                        <div className={styles.divServicosModal}>
-                            {modalServico && Array.isArray(modalServico) && modalServico.map((servico, item) => (
-                                <div className={styles.servicosModal} key={item}>
-                                    <h2 className={styles.titleServiceModal}>{servico.name}</h2>
-                                    <p><b>Preço: </b>R${servico.price}</p>
-                                </div>
-                            ))}
-                        </div>
-                        <p className={styles.textoModal}><b>Deseja prosseguir?</b></p>
-                        <div className={styles.divBtnModal}>
-                            <Button className={styles.btnModal} onClick={handleAgendar}>Sim</Button>
-                            <Button className={styles.btnModal} onClick={() => setModalIsOpen(false)}>Não</Button>
-                        </div>
-                    </Modal>
-                </div>
-                <Footer />
+                <FooterProfessional />
             </main>
         </>
     )

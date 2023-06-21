@@ -7,22 +7,16 @@ import { Button, Container, Form, FormGroup, Input } from 'reactstrap';
 import styles from '../../../styles/profissional/servicos/editar.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BiEdit, BiExit } from 'react-icons/bi';
+import { BiExit } from 'react-icons/bi';
+import { TbNewSection } from 'react-icons/tb';
 
-interface Servico {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    professional_id: number;
-}
 
-const EditarServico = () => {
-    const [servico, setServico] = useState<Servico[]>([]);
-    const [id, setIdServico] = useState(0);
+const CriarServico = () => {
+    const [professional, setProfessional] = useState([]);
     const [serviceName, setServiceName] = useState('');
     const [serviceDescription, setServiceDescription] = useState('');
     const [servicePrice, setServicePrice] = useState(0);
+    const [professionalName, setProfessionalName] = useState('');
 
     const handleNameChange = (e: any) => {
         setServiceName(e.target.value);
@@ -36,49 +30,40 @@ const EditarServico = () => {
         setServicePrice(e.target.value);
     };
 
-
-    const fetchServico = async () => {
+    const fetchProfessional = async () => {
         const token = sessionStorage.getItem('agendei-token-professional');
-        const id = sessionStorage.getItem('agendei-servico');
 
-        try {
-            const response = await fetch(`https://agendei-api.onrender.com/service/getById/${id}`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
+        fetch('https://agendei-api.onrender.com/professional/current', {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then((response) => {
             if (response.ok) {
-                const servico = await response.json();
-                const servico_info = [
-                    servico.name,
-                    servico.description,
-                    servico.price,
-                ];
-
-                setIdServico(servico.id);
-                setServiceName(servico.name);
-                setServiceDescription(servico.description);
-                setServicePrice(servico.price);
-
-                setServico(servico_info as never);
+                response.json().then((data) => {
+                    const id = data.id;
+                    const name = data.first_name;
+                    setProfessional(id)
+                    setProfessionalName(name)
+                })
             }
-        } catch (error) {
-            console.log('Erro ao buscar o serviço: ', error)
-        }
+        })
     }
 
     useEffect(() => {
-        fetchServico();
+        fetchProfessional();
     }, []);
 
-    const atualizar = async (e: any) => {
+    
+    const voltar = () => {
+        window.location.href = '/profissional/servicos';
+    }
 
+    const Criar = async (e: any) => {
         const token = sessionStorage.getItem('agendei-token-professional');
 
-
         const data = {
+            professional_id: professional,
             name: serviceName,
             description: serviceDescription,
             price: servicePrice,
@@ -86,8 +71,8 @@ const EditarServico = () => {
 
         console.log(data)
 
-        fetch(`https://agendei-api.onrender.com/service/update/${id}`, {
-            method: "PUT",
+        fetch(`https://agendei-api.onrender.com/service/create/`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -96,7 +81,7 @@ const EditarServico = () => {
         })
             .then((response) => {
                 if (response.ok) {
-                    toast.success('Serviço atualizado com sucesso!', {
+                    toast.success('Serviço criado com sucesso!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -106,12 +91,8 @@ const EditarServico = () => {
                         progress: undefined,
                         theme: "colored",
                     });
-
-                    setTimeout(() => {
-                        window.location.href = '/profissional/servicos';
-                    }, 2000);
                 } else {
-                    toast.error('Erro ao atualizar o serviço!', {
+                    toast.error('Erro ao criar o serviço!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -124,30 +105,24 @@ const EditarServico = () => {
                 }
             })
             .catch((error) => {
-                console.log('Erro ao atualizar o serviço: ', error);
+                console.log('Erro ao criar o serviço: ', error);
             });
 
         e.preventDefault();
-
-        fetchServico();
-    }
-
-    const voltar = () => {
-        window.location.href = '/profissional/servicos';
     }
 
     return (
         <>
             <Head>
-                <title>Editar Serviço - Agendei | Profissional</title>
+                <title>Criar Serviço - Agendei | Profissional</title>
                 <link rel="icon" href="/Favicon.svg" />
             </Head>
             <main className={styles.main}>
                 <Header />
                 <ToastContainer />
                 <Container className={styles.container}>
-                    <Form className={styles.form} autoComplete="off" onSubmit={atualizar}>
-                        <h1 className={styles.titulo}>Atualize seus serviços<br /></h1>
+                    <Form className={styles.form} autoComplete="off" onSubmit={Criar}>
+                        <h1 className={styles.titulo}>Crie um novo serviço</h1>
                         <FormGroup>
                             <div className={styles.label}>
                                 <Input
@@ -189,9 +164,23 @@ const EditarServico = () => {
                                 <label>Preço</label>
                             </div>
                         </FormGroup>
+                        
+                        <FormGroup>
+                            <div className={styles.label}>
+                                <Input
+                                    type="text"
+                                    name="text"
+                                    placeholder=" "
+                                    required
+                                    value={professionalName}
+                                    disabled
+                                />
+                                <label>Profissional</label>
+                            </div>
+                        </FormGroup>
                         <div className={styles.btnGroup}>
                             <Button type="submit" outline className={styles.btn}>
-                            <BiEdit/>Editar
+                            <TbNewSection />Criar
                             </Button>
                             
                             <Button onClick={voltar} outline className={styles.btnVoltar}>
@@ -206,4 +195,4 @@ const EditarServico = () => {
     )
 }
 
-export default EditarServico;
+export default CriarServico;

@@ -7,7 +7,7 @@ const FooterProfessional = function () {
     return (
         <>
             <Container className={styles.footer}>
-                <p className={styles.text}><a href='/status' className={styles.footerLink}>Status do sistema</a> | <a href='google.com' className={styles.footerLink}>Política de privacidade</a> | <a href='google.com' className={styles.footerLink}>Termos e condições</a></p>
+                <p className={styles.text}><a href='/status' className={styles.footerLink}>Status do sistema</a> | <a href='/cliente/login' className={styles.footerLink}>Entrar como Cliente</a></p>
                 <p className={styles.text}>Copyright © 2023 Agendei. Todos os direitos reservados.</p>
             </Container>
         </>

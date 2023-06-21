@@ -14,6 +14,7 @@ import Carregar from '@/components/carregar';
 import { PongSpinner } from 'react-spinners-kit';
 import Header from '@/components/common/header';
 import Footer from '@/components/common/footer';
+import ValidadorCPF from '@/services/validandocpf';
 
 dotenv.config();
 
@@ -23,6 +24,23 @@ const Cadastrar = function () {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [logado, setLogado] = useState(false);
+    const [cpf, setCPF] = useState('');
+    const [isValid, setIsValid] = useState(false);
+    const [body, setBody] = useState({
+        first_name: '',
+        last_name: '',
+        cpf: '',
+        phone: '',
+        email: '',
+        password: '',
+    });
+
+    const handleInputChange = (event: any) => {
+        const { value } = event.target;
+        setCPF(value);
+        setIsValid(false);
+    };
+    
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -30,73 +48,75 @@ const Cadastrar = function () {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
+        
         const formData = new FormData(event.target as HTMLFormElement);
+
+        const validarCpf = () => {
+            const validador = new ValidadorCPF(cpf);
+            const cpfValido = validador.valida();
+
+            if(cpfValido == true) {
+                setIsValid(true);
+            }
+        }
+
+        validarCpf();
+
         const first_name = formData.get("nome") as string;
         const last_name = formData.get("sobrenome") as string;
-        var cpf = formData.get("cpf") as string;
         var phone = formData.get("telefone") as string;
         const email = formData.get("email") as string;
         const password = formData.get("password") as string;
-
-        cpf = cpf.replace(/\D/g, '');
         phone = phone.replace(/\D/g, '');
+        
+        setBody({
+            first_name: first_name,
+            last_name: last_name,
+            cpf: cpf,
+            phone: phone,
+            email: email,
+            password: password,
+        });
 
-        console.log(email, password);
-
-        try {
-            const response = await fetch('https://agendei-api.onrender.com/client/register', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ first_name, last_name, cpf, phone, email, password })
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                const client_info = [data.client.first_name, data.client.last_name, data.client.email, data.client.id];
-                sessionStorage.setItem('client_info', JSON.stringify(client_info));
-
-                localStorage.setItem('agendei-token', data.token);
-
-                toast.success('Cliente cadastrado!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-
-
-                setIsLoading(true);
-                setLogado(true);
-            } else {
-                toast.error('Erro ao cadastrar!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-            }
-        } catch (error) {
-            console.log(error);
+        if (isValid == false) {
+            toast.error('CPF inválido');
+            return;
+        } else {
+            handleCadastrar();
         }
     };
 
+    const handleCadastrar = async () => {
+        setIsLoading(true);
+            try {
+                setIsLoading(true);
+                const response = await fetch('https://agendei-api.onrender.com/client/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({body})
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    toast.success('Cadastro realizado com sucesso!');
+                    setLogado(true);
+                } else {
+                    toast.error('Erro ao realizar cadastro');
+                }       
+            } catch (error) {
+                toast.error('Erro ao realizar cadastro');
+            }
+
+            setIsLoading(false);
+    };
+
     if (logado) {
+        toast.success('Cadastro realizado com sucesso! Você será redirecionado para a página inicial');
+
         setTimeout(() => {
             window.location.href = "/cliente/inicio";
         }, 2500);
-
-        return <Carregar />
     }
 
     return (
@@ -146,6 +166,8 @@ const Cadastrar = function () {
                                         name="cpf"
                                         mask="999.999.999-99"
                                         placeholder=" "
+                                        value={cpf}
+                                        onChange={handleInputChange}
                                         required
                                     />
                                     <label>CPF</label>

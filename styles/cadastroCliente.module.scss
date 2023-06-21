@@ -5,7 +5,7 @@
   overflow-x: hidden;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   height: 100vh;
 }
@@ -220,6 +220,10 @@
   .form {
     width: 700px;
   }
+  
+  .label Input {
+    min-width: 250px;
+  }
 }
 
 @media (max-width: 750px) {
@@ -229,18 +233,32 @@
     margin-top: 50px;
     margin-bottom: 50px;
   }
+  .label Input {
+    min-width: 180px;
+  }
 }
 
 @media (max-width: 520px) {
   .form {
+    margin-top: 200px;
     width: 450px;
-    height: 600px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    height: 800px;
+    gap: 2px;
+  }
+
+  .formGroup {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-top: -10px;
+  }
+
+  .label {
+    margin-top: 4px;
   }
   
   .titulo {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 100%;
   }
 
@@ -252,12 +270,12 @@
 @media (max-width: 400px) {
   .form {
     width: 350px;
-    height: 550px;
-    margin-top: 30px;
+    height: 800px;
+    margin-top: 100px;
     margin-bottom: 30px;
   }
   .titulo {
-    font-size: 36px;
+    font-size: 30px;
     line-height: 100%;
   }
 

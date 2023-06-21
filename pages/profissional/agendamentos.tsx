@@ -235,7 +235,7 @@ const Agendamentos = () => {
                                         <p className={styles.subtituloBtn}><b>Forma de Pagamento: </b>{agendamento.payment.method} - {agendamento.payment.status}</p>
                                         <p className={styles.subtituloBtn}><b>Status: </b>{agendamento.status}</p>
                                         <div className={styles.btnGroup}>
-                                            <Button onClick={() => handleSetCancelado(agendamento.id)} className={styles.btnCancelar}><GiCancel /></Button>
+                                            <Button className={styles.btnCancelar}><GiCancel /></Button>
                                             <Button className={styles.btnFinalizado}><IoMdCheckmarkCircleOutline /></Button>
                                         </div>
                                     </div>

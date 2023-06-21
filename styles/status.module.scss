@@ -1,0 +1,168 @@
+.main {
+    background-color: #15161A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.titulo {
+    font-weight: 700;
+    font-size: 36px;
+    text-align: center;
+    color: #fff;
+}
+
+.texto {
+    font-weight: 200;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    margin: 20px;
+}
+
+.statusInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.infoFeito {
+    padding: 10px 20px;
+    background-color: #0053CC;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.infoFazendo {
+    padding: 10px 20px;
+    background-color: #FFC700;
+    border-radius: 10px;
+}
+
+.infoFazer {
+    padding: 10px 20px;
+    background-color: #CD191E;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.divRequisito {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-grow: inherit;
+    width: 95%;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.requisito {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px 40px;
+
+    background: #09090A;
+    border-radius: 25px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid rgba(36, 36, 36, 0.48);
+}
+
+.statusConcluido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 20px;
+    height: 20px;
+
+    background: #0053CC;
+    border-radius: 50%;
+}
+
+.statusFazendo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 20px;
+    height: 20px;
+
+    background: #FFC700;
+    border-radius: 50%;
+}
+
+.statusFazer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 20px;
+    height: 20px;
+
+    background: #CD191E;
+    border-radius: 50%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    margin-left: 15px;
+    color: #fff;
+}
+
+@media (max-width: 575px) {
+    .container {
+        margin-top: 50px;
+    }
+
+    .statusInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .divRequisito {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        flex-grow: inherit;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+}

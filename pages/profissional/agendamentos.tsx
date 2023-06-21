@@ -11,6 +11,7 @@ import styles from '../../styles/profissional/agendamentos.module.scss';
 import HeaderProfessional from '@/components/common/headerProfessional';
 
 interface Agendamento {
+    id: number;
     client_name: string;
     payment: {
         method: string;
@@ -165,7 +166,7 @@ const Agendamentos = () => {
     };
 
     const handleVoltar = () => {
-        window.location.href = '/cliente/inicio';
+        window.location.href = '/profissional/inicio';
     };
 
     const formatDatee = (dateString: string) => {
@@ -183,6 +184,16 @@ const Agendamentos = () => {
 
     const handleSetCancelado = async (id: number) => {
         const token = sessionStorage.getItem('agendei-token-professional');
+        const parseId = id;
+
+        const body = {
+            id: parseId,
+            status: 'Cancelado',
+            payment: {
+                method: agendamentos.map((agendamento: Agendamento) => agendamento.payment.method),
+                status: 'Cancelado'
+            }
+        };
 
         try {
             const response = await fetch(`https://agendei-api.onrender.com/appointment/update`, {
@@ -190,32 +201,10 @@ const Agendamentos = () => {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
-                } 
-            });
-
-            if (response.ok) {
-                toast.success('Agendamento cancelado com sucesso!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-            } else {
-                toast.error('Erro ao cancelar agendamento!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
-            }
+                },
+                mode: "cors",
+                body: JSON.stringify(body)
+            }).then((res) => res.json()).then((data) => console.log(data));
         } catch (error) {
             console.log(error);
         }
@@ -225,7 +214,7 @@ const Agendamentos = () => {
     return (
         <>
             <Head>
-                <title>Agendamentos - Agendei</title>
+                <title>Agendamentos - Agendei | Profissional</title>
                 <link rel="icon" href="/Favicon.svg" />
             </Head>
             <main className={styles.main}>
@@ -240,18 +229,15 @@ const Agendamentos = () => {
                                         <h1 className={styles.tituloBtn}>{formatDatee(agendamento.schedule.date)} às {agendamento.schedule.hour}</h1>
                                     </div>
                                     <div className={styles.baixo}>
-                                        <p className={styles.subtituloBtn}><b>Profissional: </b>{agendamento.professional_name}</p>
-                                        <p className={styles.subtituloBtn}><b>Endereço: </b>
-                                            {agendamento.professional_adress_json.street}, {agendamento.professional_adress_json.number}, {agendamento.professional_adress_json.complement}, {agendamento.professional_adress_json.city}, {agendamento.professional_adress_json.state}
-                                        </p>
+                                        <p className={styles.subtituloBtn}><b>Cliente: </b>{agendamento.client_name}</p>
                                         <p className={styles.subtituloBtn}><b>Serviços: </b>{agendamento.service_names}</p>
                                         <p className={styles.subtituloBtn}><b>Valor Total: </b>R$ {agendamento.total_price}</p>
                                         <p className={styles.subtituloBtn}><b>Forma de Pagamento: </b>{agendamento.payment.method} - {agendamento.payment.status}</p>
                                         <p className={styles.subtituloBtn}><b>Status: </b>{agendamento.status}</p>
                                         <div className={styles.btnGroup}>
-                                        <Button className={styles.btnCancelar}><GiCancel /></Button>
-                                        <Button className={styles.btnFinalizado}><IoMdCheckmarkCircleOutline /></Button>
-                                    </div>
+                                            <Button onClick={() => handleSetCancelado(agendamento.id)} className={styles.btnCancelar}><GiCancel /></Button>
+                                            <Button className={styles.btnFinalizado}><IoMdCheckmarkCircleOutline /></Button>
+                                        </div>
                                     </div>
                                 </div>
                             )

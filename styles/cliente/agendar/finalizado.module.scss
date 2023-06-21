@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -42,7 +42,8 @@
     font-weight: 800;
     font-size: 48px;
     color: #0053CC;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .containerTexto {
@@ -63,22 +64,14 @@
     align-items: center;
 
     font-weight: 300;
-    font-size: 18px;
-    text-align: center;
-
-    background-color: #0053CC;
-    padding: 10px 20px;
+    font-size: 20px;
+    text-align: center; 
     border-radius: 30px;
-    color: #FFFFFF;
-
-    margin-top: 15px;
-}
-
-.subtituloInfo {
-    font-weight: 500;
-    font-size: 18px;
     color: #000;
-    margin-top: 10px;
+
+    & b {
+        margin-right: 5px;
+    }
 }
 
 .formBtn {
@@ -129,6 +122,8 @@
 }
 
 .btnAgendamentos {
+    width: 15rem;
+    height: 3.125rem;
     text-decoration: none;
     width: 20rem;
     height: 3.125rem;
@@ -164,9 +159,9 @@
         align-items: center;
         flex-direction: column;
 
-        width: 70%;
+        width: 90%;
 
-        margin-top: 80px;
+        margin-top: 130px;
 
         background: #FFFFFF;
         border: 1px solid #F4F4F4;

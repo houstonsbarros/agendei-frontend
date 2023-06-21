@@ -109,7 +109,7 @@ const Status = () => {
                     <div className={styles.statusConcluido}></div>
                     <div className={styles.info}>
                         <h3 className={styles.tituloDiv}>RF13</h3>
-                        <p className={styles.textoDiv}>informar disponibilidade de horários</p>
+                        <p className={styles.textoDiv}>Informar disponibilidade de horários</p>
                     </div>
                 </div>
             </div>

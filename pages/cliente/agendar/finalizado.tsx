@@ -154,40 +154,19 @@ const Concluido = () => {
             <main className={styles.main}>
                 <Header />
                 <div className={styles.container}>
+                    <Image src="/relogio.gif" alt="Logo Agendei" width={70} height={70} />
                     <h1 className={styles.titulo}>Agendamento Concluído</h1>
                     {Array.isArray(agendamento) && agendamento.length > 0 && (
                         <div className={styles.informacoes}>
-                            <div className={styles.containerTexto}>
-                                <p className={styles.subtitulo}>Cliente:</p>
-                                <p className={styles.subtituloInfo}>{agendamento[0].client_name}</p>
-                            </div>
-
-                            <div className={styles.containerTexto}>
-                                <p className={styles.subtitulo}>Profissional:</p>
-                                <p className={styles.subtituloInfo}>{agendamento[0].professional_name}</p>
-                            </div>
-
-                            <div className={styles.containerTexto}>
-                                <p className={styles.subtitulo}>Horário:</p>
-                                <p className={styles.subtituloInfo}>{formatDate(agendamento[0].schedule.date)} às {agendamento[0].schedule.hour}</p>
-                            </div>
-
-                            <div className={styles.containerTexto}>
-                                <p className={styles.subtitulo}>Serviços:</p>
-                                <p className={styles.subtituloInfo}>{agendamento[0].service_names}</p>
-                            </div>
-
-                            <div className={styles.containerTexto}>
-                                <p className={styles.subtitulo}>Valor Total:</p>
-                                <p className={styles.subtituloInfo}>R$ {agendamento[0].total_price}</p>
-                            </div>
+                            <p className={styles.subtitulo}><b>Cliente: </b>{agendamento[0].client_name}</p>
+                            <p className={styles.subtitulo}><b>Profissional: </b>{agendamento[0].professional_name}</p>
+                            <p className={styles.subtitulo}><b>Horário: </b>{formatDate(agendamento[0].schedule.date)} às {agendamento[0].schedule.hour}</p>
+                            <p className={styles.subtitulo}><b>Serviços: </b>{agendamento[0].service_names}</p>
+                            <p className={styles.subtitulo}><b>Valor Total: </b>R$ {agendamento[0].total_price}</p>
                         </div>
                     )}
 
-                    <div className={styles.divBtn}>
-                        <Button onClick={voltar} outline className={styles.btnVoltar}>Voltar</Button>
-                        <Button href="/cliente/agendamentos" outline className={styles.btnAgendamentos}>Ver Meus Agendamentos</Button>
-                    </div>
+                        <Button onClick={voltar} outline className={styles.btnVoltar}>Agendamentos</Button>
                 </div>
                 <Footer />
             </main>

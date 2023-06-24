@@ -88,15 +88,6 @@ const Inicio = () => {
                                 <p className={styles.subtituloBtn}>Gerencie seus Serviços</p>
                             </div>
                         </Link>
-                        <Link href="" className={styles.agendamentos}>
-                            <div className={styles.cima}>
-                                <FaChevronRight size="25px" className={styles.icone} />
-                                <h1 className={styles.tituloBtn}>Agendar</h1>
-                            </div>
-                            <div className={styles.baixo}>
-                                <p className={styles.subtituloBtn}>Agende agora mesmo</p>
-                            </div>
-                        </Link>
                     </div>
                 </div>
                 <FooterProfessional />

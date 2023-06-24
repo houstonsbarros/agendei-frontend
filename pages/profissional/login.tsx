@@ -6,7 +6,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { PongSpinner, SwapSpinner } from 'react-spinners-kit';
+import { PongSpinner, RingSpinner, SwapSpinner } from 'react-spinners-kit';
 import FooterProfessional from '@/components/common/footerProfessional';
 
 const Login = function () {
@@ -126,8 +126,8 @@ const Login = function () {
                             </div>
                         </FormGroup>
                         {isLoading ? (
-                            <Button type="submit" outline className={styles.btnLoading}>
-                                <PongSpinner color="#FFF" className={styles.spinner} />
+                            <Button type="submit" outline className={styles.btnLoading} disabled>
+                                <RingSpinner color="#FFF" className={styles.spinner} />
                             </Button>
                         ) : (
                             <Button type="submit" outline className={styles.btn}>

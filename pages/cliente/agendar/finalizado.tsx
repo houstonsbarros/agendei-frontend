@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Footer from '@/components/common/footer';
 import Header from '@/components/common/header';
 import PageSpinner from '@/components/common/spinner';
@@ -51,8 +52,6 @@ const Concluido = () => {
                         userData.email,
                         userData.id,
                     ];
-
-                    console.log("Cliente Info", client_info);
 
                     setLogado(true);
                     setClientInfo(client_info as never[]);
@@ -110,6 +109,27 @@ const Concluido = () => {
 
                     if (Array.isArray(data)) {
                         setAgendamento(data as never);
+
+                        try {
+                            fetch('https://agendei-api.onrender.com/email/send', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    profissional: data[0].professional_name,
+                                    cliente: data[0].client_name,
+                                    servico: data[0].service_names,
+                                    horario: data[0].schedule.date + ' às ' + data[0].schedule.hour,
+                                    valor: data[0].total_price,
+                                    status: data[0].status,
+                                    destinatario: 'houstonbarroscontact@gmail.com',
+                                    assunto: 'Você possui um novo agendamento!',
+                                }),
+                            })
+                        } catch (error) {
+                            console.log('Erro ao enviar o email:', error);
+                        }
                     }
                 } else {
                     console.log('Erro ao buscar o agendamento!');

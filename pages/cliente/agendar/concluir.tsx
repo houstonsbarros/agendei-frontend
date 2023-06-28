@@ -42,11 +42,12 @@ const Finalizar = () => {
 
                 if (response.ok) {
                     const userData = await response.json();
+
                     const client_info = [
-                        userData.first_name,
-                        userData.last_name,
-                        userData.email,
-                        userData.id,
+                        userData.dataValues.first_name,
+                        userData.dataValues.last_name,
+                        userData.dataValues.email,
+                        userData.dataValues.id,
                     ];
 
                     setClientInfo(client_info as never[]);

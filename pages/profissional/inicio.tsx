@@ -4,12 +4,22 @@ import PageSpinner from "@/components/common/spinner";
 import Link from "next/link";
 import styles from '../../styles/profissional/inicio.module.scss';
 import { FaChevronRight } from "react-icons/fa";
+import { RxDashboard } from "react-icons/rx";
+import { HiOutlineClipboardCheck } from "react-icons/hi";
+import { BsReceiptCutoff } from "react-icons/bs";
+import { MdSettings } from "react-icons/md";
+import { TbChartInfographic } from "react-icons/tb";
+import { FiLogOut } from "react-icons/fi";
+import { CiCircleChevRight, CiCircleChevLeft } from 'react-icons/ci'
 import HeaderProfessional from "@/components/common/headerProfessional";
 import FooterProfessional from '@/components/common/footerProfessional';
+import Image from "next/image";
+import { FormGroup, Input } from "reactstrap";
 
 const Inicio = () => {
     const [logado, setLogado] = useState(false);
     const [client_info, setClientInfo] = useState([]);
+    const [fechado, setFechado] = useState(false);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -49,6 +59,14 @@ const Inicio = () => {
         return <PageSpinner />
     }
 
+    const handleToggleSidebar = () => {
+        if(fechado){
+            setFechado(false)
+        } else {
+            setFechado(true)
+        }
+    };
+
     return (
         <>
             <Head>
@@ -56,10 +74,61 @@ const Inicio = () => {
                 <link rel="icon" href="/Favicon.svg" />
             </Head>
             <main className={styles.main}>
-                <HeaderProfessional />
+                <div className={!fechado ? styles.sidebar : styles.sidebarFechado}>
+                    <button onClick={handleToggleSidebar} className={styles.btnToggle}>{!fechado ? (
+                        <CiCircleChevLeft size="25px" className={styles.icone} />
+                    ) : (
+                        <CiCircleChevRight size="20px" className={styles.icone} />
+                    )}</button>
+                    {!fechado ? (
+                        <Image src="/AgendeiLogoBranca.svg" alt="Logo" width={150} height={150} className={styles.sideLogo}/>
+                    ) : (
+                        <Image src="/IconeBranco.svg" alt="Logo" width={30} height={30} className={styles.sideLogo}/>
+                    )}
+                    
+                    <div className={styles.links}>
+                        <Link href="/profissional/inicio" className={styles.sideAtivo}>
+                            <div className={styles.sidebarLink}>
+                                <RxDashboard size="20px" className={styles.iconeAtivo}/>
+                                <h1 className={styles.sidebarTituloAtivo}>Dashboard</h1>
+                            </div>
+                        </Link>
+                        <Link href="/profissional/agendamentos" className={styles.side}>
+                            <div className={styles.sidebarLink}>
+                                <HiOutlineClipboardCheck size="20px" className={styles.icone} />
+                                <h1 className={styles.sidebarTitulo}>Agendamentos</h1>
+                            </div>
+                        </Link>
+                        <Link href="/profissional/servicos" className={styles.side}>
+                            <div className={styles.sidebarLink}>
+                                <BsReceiptCutoff size="20px" className={styles.icone} />
+                                <h1 className={styles.sidebarTitulo}>Serviços</h1>
+                            </div>
+                        </Link>
+                        <Link href="/profissional/relatorios" className={styles.side}>
+                            <div className={styles.sidebarLink}>
+                                <TbChartInfographic size="20px" className={styles.icone} />
+                                <h1 className={styles.sidebarTitulo}>Relatórios</h1>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className={styles.conta}>
+                        <Link href="/profissional/configuracoes" className={styles.side}>
+                            <div className={styles.sidebarLink}>
+                                <MdSettings size="20px" className={styles.icone} />
+                                <h1 className={styles.sidebarTitulo}>Configurações</h1>
+                            </div>
+                        </Link>
+                        <Link href="/profissional/sair" className={styles.side}>
+                            <div className={styles.sidebarLink}>
+                                <FiLogOut size="20px" className={styles.icone} />
+                                <h1 className={styles.sidebarTitulo}>Sair</h1>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
                 <div className={styles.container}>
-                    <h1 className={styles.titulo}>Bem vindo, {client_info[0]} {client_info[1]}</h1>
-                    <p className={styles.subtitulo}>O que você deseja fazer hoje?</p>
+                    <h1 className={styles.titulo}>Dashboard</h1>
                     <div className={styles.containerBtns}>
                         <Link href="/profissional/agendamentos" className={styles.agendar}>
                             <div className={styles.cima}>
@@ -90,7 +159,6 @@ const Inicio = () => {
                         </Link>
                     </div>
                 </div>
-                <FooterProfessional />
             </main>
         </>
     )

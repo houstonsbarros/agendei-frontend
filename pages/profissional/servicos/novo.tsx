@@ -69,8 +69,6 @@ const CriarServico = () => {
             price: servicePrice,
         }
 
-        console.log(data)
-
         fetch(`https://agendei-api.onrender.com/service/create/`, {
             method: "POST",
             headers: {

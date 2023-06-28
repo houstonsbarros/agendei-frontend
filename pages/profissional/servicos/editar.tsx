@@ -84,8 +84,6 @@ const EditarServico = () => {
             price: servicePrice,
         }
 
-        console.log(data)
-
         fetch(`https://agendei-api.onrender.com/service/update/${id}`, {
             method: "PUT",
             headers: {

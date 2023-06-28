@@ -26,8 +26,6 @@ const Carregar = () => {
                         userData.first_name,
                     ];
 
-                    console.log(client_info);
-
                     setNome(client_info as never);
                 } else {
                     window.location.href = "/cliente/login";

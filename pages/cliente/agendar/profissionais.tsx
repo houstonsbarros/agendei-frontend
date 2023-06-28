@@ -57,12 +57,9 @@ const Profissionais = () => {
                     const userData = await response.json();
                     setProfissionais(userData as never[]);
 
-                    console.log(userData);
-
                     const endereco = userData.map((item: UserData) => {
                         const enderecoJSON = JSON.parse(item.adress);
 
-                        console.log(enderecoJSON);
                         const enderecoFormatado = `${enderecoJSON.street}, ${enderecoJSON.number} - ${enderecoJSON.complement}, ${enderecoJSON.city} - ${enderecoJSON.state}`;
 
                         return enderecoFormatado;

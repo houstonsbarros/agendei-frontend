@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { GiCancel } from 'react-icons/gi';
 import { ToastContainer, toast } from 'react-toastify';
-import { Button } from 'reactstrap';
+import 'react-toastify/dist/ReactToastify.css';
+import { Button, Toast } from 'reactstrap';
 import styles from '../../styles/profissional/agendamentos.module.scss';
 import HeaderProfessional from '@/components/common/headerProfessional';
 
@@ -88,8 +89,6 @@ const Agendamentos = () => {
 
             if (response.ok) {
                 const data = await response.json();
-
-                console.log(data)
 
                 setAgendamentos(data);
 
@@ -182,29 +181,44 @@ const Agendamentos = () => {
         return dateString;
     };
 
-    const handleSetCancelado = async (id: number) => {
+    const handleSetConfirmado = async (id: number) => {
         const token = sessionStorage.getItem('agendei-token-professional');
         const parseId = id;
 
-        const body = {
-            id: parseId,
-            status: 'Cancelado',
-            payment: {
-                method: agendamentos.map((agendamento: Agendamento) => agendamento.payment.method),
-                status: 'Cancelado'
-            }
-        };
-
         try {
-            const response = await fetch(`https://agendei-api.onrender.com/appointment/update`, {
+            const response = await fetch(`https://agendei-api.onrender.com/appointment/confirm/${parseId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
-                mode: "cors",
-                body: JSON.stringify(body)
-            }).then((res) => res.json()).then((data) => console.log(data));
+            })
+
+            if (response.ok) {
+                toast.success('Agendamento confirmado com sucesso!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                getAgendamentos();
+            } else {
+                toast.error('Erro ao confirmar agendamento!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
+
         } catch (error) {
             console.log(error);
         }
@@ -218,6 +232,7 @@ const Agendamentos = () => {
                 <link rel="icon" href="/Favicon.svg" />
             </Head>
             <main className={styles.main}>
+                <ToastContainer />
                 <HeaderProfessional />
                 <div className={styles.container}>
                     <h1 className={styles.titulo}>Olá, você tem os seguintes agendamentos</h1>
@@ -236,7 +251,7 @@ const Agendamentos = () => {
                                         <p className={styles.subtituloBtn}><b>Status: </b>{agendamento.status}</p>
                                         <div className={styles.btnGroup}>
                                             <Button className={styles.btnCancelar}><GiCancel /></Button>
-                                            <Button className={styles.btnFinalizado}><IoMdCheckmarkCircleOutline /></Button>
+                                            <Button className={styles.btnFinalizado} onClick={() => handleSetConfirmado(agendamento.id)}><IoMdCheckmarkCircleOutline /></Button>
                                         </div>
                                     </div>
                                 </div>

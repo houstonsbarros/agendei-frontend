@@ -8,7 +8,6 @@ function ValidadorCPF(cpfenviado){
 }
 
 ValidadorCPF.prototype.valida = function(){
-    console.log(this.cpfLimpo)
     if(typeof this.cpfLimpo === 'undefined') return false;
     if(this.cpfLimpo.length !== 11) return false;
     if(this.isSequencia()) return false;
